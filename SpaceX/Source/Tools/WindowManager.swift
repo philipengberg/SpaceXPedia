@@ -12,24 +12,24 @@ import UIKit
 class WindowManager {
     
     enum Tab: Equatable {
-        case launches
-        case rockets
+        case futureLaunches
+        case pastLaunches
         
         var title: String? {
             switch self {
-            case .launches: return "Launches"
-            case .rockets: return "Rockets"
+            case .futureLaunches: return "Future launches"
+            case .pastLaunches: return "Past launches"
             }
         }
         
         var itemImage: UIImage? {
-            return nil
+            return #imageLiteral(resourceName: "landed-booster-icon")
         }
         
         func viewController() -> UIViewController {
             switch self {
-            case .launches: return LaunchesViewController(viewModel: LaunchesViewModel(api: SpaceXAPI))
-            case .rockets:  return RocketsViewController(viewModel: RocketsViewModel(api: SpaceXAPI))
+            case .futureLaunches: return LaunchesViewController(viewModel: LaunchesViewModel(api: SpaceXAPI, target: .futureLaunches))
+            case .pastLaunches:  return LaunchesViewController(viewModel: LaunchesViewModel(api: SpaceXAPI, target: .pastLaunches))
             }
         }
     }
@@ -67,11 +67,12 @@ class WindowManager {
         guard let tabBarController = tabBarController else { return }
 //        tabBarController.delegate = self
         
-        self.tabs = [.launches, .rockets]
+        self.tabs = [.futureLaunches, .pastLaunches]
         
         tabBarController.viewControllers = tabs.enumerated().map { (idx, tab) -> UIViewController in
             let viewController = tab.viewController()
-            let tabBarItem = UITabBarItem(title: tab.title, image: tab.itemImage?.withRenderingMode(.alwaysOriginal), tag: idx)
+            let tabBarItem = UITabBarItem(title: nil, image: tab.itemImage?.withRenderingMode(.alwaysOriginal), tag: idx)
+            tabBarItem.title = tab.title
 //            tabBarItem.imageInsets = showTextLabels ? .zero : UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
 //            tabBarItem.selectedImage = tab.itemImage
             viewController.tabBarItem = tabBarItem

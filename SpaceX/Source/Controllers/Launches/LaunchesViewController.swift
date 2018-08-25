@@ -24,10 +24,10 @@ class LaunchesViewController: UIViewController {
 
     // MARK: - Inits
 
-    init(viewModel: LaunchesViewModel = LaunchesViewModel()) {
+    init(viewModel: LaunchesViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        title = "Launches"
+        navigationItem.title = "Launches"
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -106,7 +106,7 @@ extension LaunchesViewController: UITableViewDataSource {
         if isFiltering() {
             return viewModel.filteredLaunches.value.count
         } else {
-            return viewModel.pastLaunches.value.count
+            return viewModel.object.value.count
         }
     }
     
@@ -116,7 +116,7 @@ extension LaunchesViewController: UITableViewDataSource {
         if isFiltering() {
             cell.configure(with: viewModel.filteredLaunches.value[indexPath.row])
         } else {
-            cell.configure(with: viewModel.pastLaunches.value[indexPath.row])
+            cell.configure(with: viewModel.object.value[indexPath.row])
         }
         
 //        cell.accessoryType = .disclosureIndicator
@@ -130,7 +130,7 @@ extension LaunchesViewController: UITableViewDelegate {
         if isFiltering() {
             Router.route(to: .launchDetail(launchId: "", launch: viewModel.filteredLaunches.value[indexPath.row]))
         } else {
-            Router.route(to: .launchDetail(launchId: "", launch: viewModel.pastLaunches.value[indexPath.row]))
+            Router.route(to: .launchDetail(launchId: "", launch: viewModel.object.value[indexPath.row]))
         }
     }
     
