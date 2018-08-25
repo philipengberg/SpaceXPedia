@@ -11,17 +11,32 @@ import RxSwift
 
 class LaunchesViewModel: ValuesViewModel<Launch> {
     
+    enum Scope: Int {
+        case upcoming, past
+    }
+    
     let filteredLaunches = Variable<[Launch]>([])
+    
     let pastLaunches = Variable<[Launch]>([])
     let futureLaunches = Variable<[Launch]>([])
+    
+    let scope = Variable<Scope>(.upcoming)
     
     let searchText = Variable<String?>(nil)
 
     init(api: API = SpaceXAPI) {
         super.init(api: api, target: .allLaunches)
         
-        searchText.asObservable().unwrap().map { search in self.object.value.filter { launch in
-            launch.missionName.lowercased().contains(search.lowercased()) }
+        let scopeDataSourceObservable = scope.asObservable().map { [weak self] scope -> [Launch]? in
+            switch scope {
+            case .upcoming: return self?.futureLaunches.value
+            case .past: return self?.pastLaunches.value
+            }
+        }.unwrap()
+        
+        Observable.combineLatest(scopeDataSourceObservable, searchText.asObservable().unwrap()).map { (dataSource, searchText) in
+            guard !searchText.isEmpty else { return dataSource }
+            return dataSource.filter { $0.missionName.lowercased().contains(searchText.lowercased()) }
         }.bind(to: filteredLaunches).disposed(by: bag)
         
         object.asObservable().map { $0.filter { !$0.upcoming } }.map { $0.reversed() }.bind(to: pastLaunches).disposed(by: bag)

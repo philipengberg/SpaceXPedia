@@ -79,6 +79,8 @@ class WindowManager {
             return UINavigationController(rootViewController: viewController)
         }
         
+        tabBarController.tabBar.isHidden = true
+        
         rootNavigationController.pushViewController(tabBarController, animated: false)
     }
     

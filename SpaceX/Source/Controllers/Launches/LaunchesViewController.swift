@@ -27,7 +27,6 @@ class LaunchesViewController: UIViewController {
     init(viewModel: LaunchesViewModel = LaunchesViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        title = "Launches"
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -49,13 +48,23 @@ class LaunchesViewController: UIViewController {
         searchController.searchBar.barTintColor = #colorLiteral(red: 0.03137254902, green: 0.3254901961, blue: 0.5254901961, alpha: 1)
         searchController.searchBar.tintColor = .white
         searchController.searchBar.placeholder = "Search Launches"
-        navigationItem.searchController = searchController
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.scopeButtonTitles = ["Upcoming", "Past"]
+        searchController.searchBar.showsScopeBar = true
+        searchController.searchBar.delegate = self
+        navigationItem.titleView = searchController.searchBar
         definesPresentationContext = true
         
         _view.tableView.registerCell(LaunchOverviewCell.self)
         
         viewModel.dataState.asObservable().subscribe(onNext: { [weak self] (dataState) in
             self?.listManager.state = dataState
+            self?.viewModel.scope.value = .upcoming
+        }).disposed(by: bag)
+        
+        viewModel.filteredLaunches.asObservable().subscribe(onNext: { [weak self] _ in
+            self?._view.tableView.reloadData()
         }).disposed(by: bag)
         
         viewModel.reloadData()
@@ -67,6 +76,13 @@ class LaunchesViewController: UIViewController {
         if let selectedIndexPath = _view.tableView.indexPathForSelectedRow {
             _view.tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        searchController.isActive = true
+        searchController.isActive = false
     }
     
     private func isFiltering() -> Bool {
@@ -84,10 +100,17 @@ class LaunchesViewController: UIViewController {
 }
 
 extension LaunchesViewController: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
+    
     func updateSearchResults(for searchController: UISearchController) {
         viewModel.searchText.value = searchController.searchBar.text
-        _view.tableView.reloadData()
+    }
+}
+
+extension LaunchesViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if let scope = LaunchesViewModel.Scope(rawValue: selectedScope) {
+            viewModel.scope.value = scope
+        }
     }
 }
 
@@ -102,24 +125,12 @@ extension LaunchesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if isFiltering() {
-            return viewModel.filteredLaunches.value.count
-        } else {
-            return viewModel.pastLaunches.value.count
-        }
+        return viewModel.filteredLaunches.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(LaunchOverviewCell.self, indexPath: indexPath)
-
-        if isFiltering() {
-            cell.configure(with: viewModel.filteredLaunches.value[indexPath.row])
-        } else {
-            cell.configure(with: viewModel.pastLaunches.value[indexPath.row])
-        }
-        
-//        cell.accessoryType = .disclosureIndicator
+        cell.configure(with: viewModel.filteredLaunches.value[indexPath.row])
         return cell
     }
 }
@@ -127,11 +138,7 @@ extension LaunchesViewController: UITableViewDataSource {
 extension LaunchesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isFiltering() {
-            Router.route(to: .launchDetail(launchId: "", launch: viewModel.filteredLaunches.value[indexPath.row]))
-        } else {
-            Router.route(to: .launchDetail(launchId: "", launch: viewModel.pastLaunches.value[indexPath.row]))
-        }
+        Router.route(to: .launchDetail(launchId: "", launch: viewModel.filteredLaunches.value[indexPath.row]))
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
