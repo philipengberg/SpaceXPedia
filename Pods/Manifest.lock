@@ -17,7 +17,6 @@ PODS:
     - Moya/Core
     - RxSwift (~> 4.0)
   - Result (3.2.4)
-  - Reveal-SDK (15)
   - RSSwizzle (0.1.0)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
@@ -40,7 +39,6 @@ DEPENDENCIES:
   - Fabric (= 1.7.7)
   - JLRoutes (= 2.1)
   - Moya/RxSwift (= 11.0.2)
-  - Reveal-SDK (= 15)
   - RSSwizzle (= 0.1.0)
   - RxCocoa (= 4.2.0)
   - RxSwift (= 4.2.0)
@@ -48,7 +46,7 @@ DEPENDENCIES:
   - SnapKit (= 4.0.0)
   - SwiftLint (= 0.25.1)
   - SwiftyJSON (= 4.1.0)
-  - youtube-ios-player-helper
+  - youtube-ios-player-helper (= 0.1.6)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -61,7 +59,6 @@ SPEC REPOS:
     - JLRoutes
     - Moya
     - Result
-    - Reveal-SDK
     - RSSwizzle
     - RxCocoa
     - RxSwift
@@ -81,7 +78,6 @@ SPEC CHECKSUMS:
   JLRoutes: d755245322b94227662ea3e43492fdca94e05c5b
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  Reveal-SDK: 25e21896c478b60b948f876043f91570d368d23d
   RSSwizzle: d561958f595028bfcef98c7d55c318b3878a61c6
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
@@ -91,6 +87,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 398ad01b2da7f5e14033a49497a823e0315cac54
+PODFILE CHECKSUM: bc36bf7529e998a8d51e6209e138386268210594
 
 COCOAPODS: 1.5.3

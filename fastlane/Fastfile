@@ -1,24 +1,93 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
-default_platform(:ios)
+default_platform :ios
 
 platform :ios do
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
-    build_app(workspace: "SpaceX.xcworkspace", scheme: "SpaceX")
-    upload_to_testflight
+  before_all do
+
+    # Make sure fastlane is up to date
+    #update_fastlane
+
+    # Make sure cocoapods are up to date
+    #cocoapods
+
+    # Increment build number before building
+    increment_build_number
+    
+  end
+
+  ######################### PUBLIC LANES ##########################
+
+  lane :release do |options|
+    options[:scheme] = "Release"
+    app_store(options)
+  end
+
+  ######################### PRIVATE LANES #########################
+  #--------------------------- App Store -------------------------#
+
+  private_lane :app_store do |options|
+    
+    if options[:include_meta]
+      upload_metadata
+    end
+
+    if options[:include_screens]
+      upload_screenshots
+    end
+
+    itc(options)
+  end
+
+  private_lane :itc do |options|
+    scheme = options[:scheme]
+
+    build
+
+    pilot(
+      ipa: "fastlane/build/SpaceX.ipa",
+      skip_submission: true,
+    )
+    
+  end
+
+  ############################# UTIL ##############################
+
+  private_lane :upload_screenshots do
+    deliver({
+      screenshots_path: './fastlane/screenshots',
+      skip_metadata: true
+    })
+  end
+
+  private_lane :upload_metadata do 
+    deliver({
+      metadata_path: './fastlane/metadata',
+      skip_screenshots: true
+    })
+  end
+
+  private_lane :build do
+    gym(
+      clean: true,
+      scheme: "SpaceX",
+      include_bitcode: false,
+      workspace: "SpaceX.xcworkspace",
+      output_directory: "fastlane/build",
+      output_name: "SpaceX.ipa",
+    )
+  end
+
+
+  after_all do |lane|
+
+    if lane == :release
+      sh "watchbuild -a #{ENV['APP_IDENTIFIER']} -u #{ENV['FASTLANE_USER']}"
+    end
+
+    notification(subtitle: "Success", message: "Finished '#{lane}' successfully")
+  end
+
+  error do |lane, exception|
+    notification(subtitle: "Error", message: "'#{lane}' errored: '#{exception}'")
   end
 end
