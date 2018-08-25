@@ -1,0 +1,96 @@
+PODS:
+  - Action (3.6.0):
+    - RxCocoa (~> 4.2.0)
+    - RxSwift (~> 4.2.0)
+  - Alamofire (4.7.2)
+  - AlamofireImage (3.3.1):
+    - Alamofire (~> 4.5)
+  - Crashlytics (3.10.2):
+    - Fabric (~> 1.7.7)
+  - DateToolsSwift (4.0.0)
+  - Fabric (1.7.7)
+  - JLRoutes (2.1)
+  - Moya/Core (11.0.2):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Moya/RxSwift (11.0.2):
+    - Moya/Core
+    - RxSwift (~> 4.0)
+  - Result (3.2.4)
+  - Reveal-SDK (15)
+  - RSSwizzle (0.1.0)
+  - RxCocoa (4.2.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.2.0)
+  - RxSwiftExt (3.2.0):
+    - RxSwiftExt/Core (= 3.2.0)
+  - RxSwiftExt/Core (3.2.0):
+    - RxSwift (~> 4.0)
+  - SnapKit (4.0.0)
+  - SwiftLint (0.25.1)
+  - SwiftyJSON (4.1.0)
+  - youtube-ios-player-helper (0.1.6)
+
+DEPENDENCIES:
+  - Action (= 3.6.0)
+  - Alamofire (= 4.7.2)
+  - AlamofireImage (= 3.3.1)
+  - Crashlytics (= 3.10.2)
+  - DateToolsSwift (= 4.0.0)
+  - Fabric (= 1.7.7)
+  - JLRoutes (= 2.1)
+  - Moya/RxSwift (= 11.0.2)
+  - Reveal-SDK (= 15)
+  - RSSwizzle (= 0.1.0)
+  - RxCocoa (= 4.2.0)
+  - RxSwift (= 4.2.0)
+  - RxSwiftExt (= 3.2.0)
+  - SnapKit (= 4.0.0)
+  - SwiftLint (= 0.25.1)
+  - SwiftyJSON (= 4.1.0)
+  - youtube-ios-player-helper
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Action
+    - Alamofire
+    - AlamofireImage
+    - Crashlytics
+    - DateToolsSwift
+    - Fabric
+    - JLRoutes
+    - Moya
+    - Result
+    - Reveal-SDK
+    - RSSwizzle
+    - RxCocoa
+    - RxSwift
+    - RxSwiftExt
+    - SnapKit
+    - SwiftLint
+    - SwiftyJSON
+    - youtube-ios-player-helper
+
+SPEC CHECKSUMS:
+  Action: 3d9486d3da02b572b0a034b6c49ac4c3fbcc8b63
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
+  Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
+  DateToolsSwift: 875d97ff9e3a5d54abdd67a269b3f51c757b71ab
+  Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
+  JLRoutes: d755245322b94227662ea3e43492fdca94e05c5b
+  Moya: a725035953bc1c0eb1be505ab903984501d82440
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  Reveal-SDK: 25e21896c478b60b948f876043f91570d368d23d
+  RSSwizzle: d561958f595028bfcef98c7d55c318b3878a61c6
+  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
+
+PODFILE CHECKSUM: 398ad01b2da7f5e14033a49497a823e0315cac54
+
+COCOAPODS: 1.5.3
