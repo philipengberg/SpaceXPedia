@@ -22,7 +22,7 @@ class LaunchesViewModel: ValuesViewModel<Launch> {
     
     let scope = Variable<Scope>(.past)
     
-    let searchText = Variable<String?>(nil)
+    let searchText = Variable<String>("")
 
     init(api: API = SpaceXAPI) {
         super.init(api: api, target: .allLaunches)
@@ -34,7 +34,7 @@ class LaunchesViewModel: ValuesViewModel<Launch> {
             }
         }.unwrap()
         
-        Observable.combineLatest(scopeDataSourceObservable, searchText.asObservable().unwrap()).map { (dataSource, searchText) in
+        Observable.combineLatest(scopeDataSourceObservable, searchText.asObservable()).map { (dataSource, searchText) in
             guard !searchText.isEmpty else { return dataSource }
             return dataSource.filter { $0.missionName.lowercased().contains(searchText.lowercased()) }
         }.bind(to: filteredLaunches).disposed(by: bag)

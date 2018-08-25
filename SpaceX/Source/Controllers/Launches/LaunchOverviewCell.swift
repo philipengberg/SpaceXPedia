@@ -8,6 +8,7 @@
 
 import AlamofireImage
 import Foundation
+import pop
 import UIKit
 import DateToolsSwift
 
@@ -58,13 +59,15 @@ class LaunchOverviewCell: UITableViewCell {
     private var payloadOrbitTagViews = [TagView]()
     private var landingSiteTagViews = [TagView]()
     
+    private let disclosureIndicatorImageView = UIImageView(image: #imageLiteral(resourceName: "disclosure-indicator"))
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = .clear
         
         contentView.addSubviews([backgroundImageView, actualContentView])
-        actualContentView.addSubviews([missionPatchImageView, nameLabel, dateIconImageView, launchDateLabel, launchSiteIconImageView, launchSiteLabel, vehicleIconImageView, vehicleNameLabel, countdownLabel])
+        actualContentView.addSubviews([missionPatchImageView, nameLabel, dateIconImageView, launchDateLabel, launchSiteIconImageView, launchSiteLabel, vehicleIconImageView, vehicleNameLabel, countdownLabel, disclosureIndicatorImageView])
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -133,6 +136,10 @@ class LaunchOverviewCell: UITableViewCell {
         countdownLabel.left = missionPatchImageView.left
         countdownLabel.width = missionPatchImageView.width
         countdownLabel.top = missionPatchImageView.bottom + 10
+        
+        disclosureIndicatorImageView.sizeToFit()
+        disclosureIndicatorImageView.centerY = actualContentView.boundsCenterY
+        disclosureIndicatorImageView.right = actualContentView.width - 20
     }
     
     func configure(with launch: Launch) {
@@ -211,6 +218,53 @@ class LaunchOverviewCell: UITableViewCell {
         let tagView = TagView()
         tagView.text = text
         return tagView
+    }
+    
+//    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+////        super.setHighlighted(highlighted, animated: animated)
+//
+//        if highlighted && animated {
+//            let shrinkAnimation = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
+//            shrinkAnimation?.toValue = NSValue(cgSize: CGSize(width: 0.95, height: 0.95))
+//            shrinkAnimation?.duration = 0.1
+//            layer.pop_add(shrinkAnimation, forKey: "shrink")
+//        } else if animated {
+//            let releaseAnimation = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+//            releaseAnimation?.toValue = NSValue(cgSize: CGSize(width: 1.0, height: 1.0))
+//            releaseAnimation?.velocity = NSValue(cgPoint: CGPoint(x: 2, y: 2))
+//            releaseAnimation?.springBounciness = 20
+//            layer.pop_add(releaseAnimation, forKey: "shrink")
+//        }
+//    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        shrink()
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        expand()
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        expand()
+    }
+    
+    func shrink() {
+        let shrinkAnimation = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
+        shrinkAnimation?.toValue = NSValue(cgSize: CGSize(width: 0.95, height: 0.95))
+        shrinkAnimation?.duration = 0.1
+        layer.pop_add(shrinkAnimation, forKey: "shrink")
+    }
+    
+    func expand() {
+        let releaseAnimation = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+        releaseAnimation?.toValue = NSValue(cgSize: CGSize(width: 1.0, height: 1.0))
+        releaseAnimation?.velocity = NSValue(cgPoint: CGPoint(x: 1, y: 1))
+        releaseAnimation?.springBounciness = 20
+        layer.pop_add(releaseAnimation, forKey: "shrink")
     }
     
     override func prepareForReuse() {

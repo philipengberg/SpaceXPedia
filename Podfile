@@ -20,6 +20,7 @@ target 'SpaceX' do
   # Interface
   pod 'SnapKit', '4.0.0'
   pod 'youtube-ios-player-helper', '0.1.6'
+  pod 'pop', '1.0.10'
 
   # Reactive
   pod 'RxSwift', '4.2.0'

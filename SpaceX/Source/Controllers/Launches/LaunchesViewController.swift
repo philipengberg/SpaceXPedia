@@ -60,11 +60,20 @@ class LaunchesViewController: UIViewController {
         
         viewModel.dataState.asObservable().subscribe(onNext: { [weak self] (dataState) in
             self?.listManager.state = dataState
+            
             self?.viewModel.scope.value = .past
         }).disposed(by: bag)
         
         viewModel.filteredLaunches.asObservable().subscribe(onNext: { [weak self] _ in
             self?._view.tableView.reloadData()
+        }).disposed(by: bag)
+        
+        _view.refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { [weak self] (_) in
+            self?.viewModel.reloadData()
+        }).disposed(by: bag)
+        
+        viewModel.object.asObservable().subscribe(onNext: { [weak self] _ in
+            self?._view.refreshControl.endRefreshing()
         }).disposed(by: bag)
         
         viewModel.reloadData()
@@ -84,8 +93,8 @@ class LaunchesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        searchController.isActive = true
-        searchController.isActive = false
+//        searchController.isActive = true
+//        searchController.isActive = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -112,7 +121,7 @@ class LaunchesViewController: UIViewController {
 extension LaunchesViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        viewModel.searchText.value = searchController.searchBar.text
+        viewModel.searchText.value = searchController.searchBar.text ?? ""
     }
 }
 
@@ -146,6 +155,7 @@ extension LaunchesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(LaunchOverviewCell.self, indexPath: indexPath)
         cell.configure(with: viewModel.filteredLaunches.value[indexPath.row])
+        cell.selectionStyle = .none
         return cell
     }
 }

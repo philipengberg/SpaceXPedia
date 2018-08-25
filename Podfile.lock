@@ -16,6 +16,7 @@ PODS:
   - Moya/RxSwift (11.0.2):
     - Moya/Core
     - RxSwift (~> 4.0)
+  - pop (1.0.10)
   - Result (3.2.4)
   - Reveal-SDK (15)
   - RSSwizzle (0.1.0)
@@ -40,6 +41,7 @@ DEPENDENCIES:
   - Fabric (= 1.7.7)
   - JLRoutes (= 2.1)
   - Moya/RxSwift (= 11.0.2)
+  - pop (= 1.0.10)
   - Reveal-SDK (= 15)
   - RSSwizzle (= 0.1.0)
   - RxCocoa (= 4.2.0)
@@ -60,6 +62,7 @@ SPEC REPOS:
     - Fabric
     - JLRoutes
     - Moya
+    - pop
     - Result
     - Reveal-SDK
     - RSSwizzle
@@ -80,6 +83,7 @@ SPEC CHECKSUMS:
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
   JLRoutes: d755245322b94227662ea3e43492fdca94e05c5b
   Moya: a725035953bc1c0eb1be505ab903984501d82440
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   Reveal-SDK: 25e21896c478b60b948f876043f91570d368d23d
   RSSwizzle: d561958f595028bfcef98c7d55c318b3878a61c6
@@ -91,6 +95,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: b5befaf58558b562e57e41c63c125b9dcfafda3d
+PODFILE CHECKSUM: 89475553efcc6d5f66ba2d65a5407d6085650dcb
 
 COCOAPODS: 1.5.3
