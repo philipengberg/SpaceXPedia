@@ -96,6 +96,8 @@ private class Logger: PluginType {
 enum SpaceXTarget {
     case rockets
     case rocket(id: String)
+    case pastLaunches
+    case futureLaunches
     case allLaunches
     case launch(id: String)
     case launchSite(id: String)
@@ -129,7 +131,9 @@ extension SpaceXTarget: TargetType {
         switch self {
         case .rockets:          return "/rockets"
         case .rocket(let id):   return "/rockets/\(id)"
-        case .allLaunches:      return "/launches"
+        case .pastLaunches:     return "/launches"
+        case .futureLaunches:   return "/launches/upcoming"
+        case .allLaunches:      return "/launches/all"
         case .launch(let id):   return "/launcehs/\(id)"
         case .launchSite(let id): return "/launchpads/\(id)"
         }
@@ -144,6 +148,7 @@ extension SpaceXTarget: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
+        case .pastLaunches: return ["sort": "launch_date_utc", "order": "desc"]
         default:
             return nil
         }
