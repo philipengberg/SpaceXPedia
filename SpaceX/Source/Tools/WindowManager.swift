@@ -45,7 +45,7 @@ class WindowManager {
     
     func initializeWindow() -> UIWindow {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.backgroundColor = UIColor.black
+        window.backgroundColor = #colorLiteral(red: 0.03137254902, green: 0.3254901961, blue: 0.5254901961, alpha: 1)
         
         rootNavigationController.isNavigationBarHidden = true
         rootNavigationController.pushViewController(UIViewController(), animated: false)

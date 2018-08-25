@@ -12,7 +12,7 @@ import RxSwift
 class LaunchesViewModel: ValuesViewModel<Launch> {
     
     enum Scope: Int {
-        case upcoming, past
+        case past, upcoming
     }
     
     let filteredLaunches = Variable<[Launch]>([])
@@ -20,7 +20,7 @@ class LaunchesViewModel: ValuesViewModel<Launch> {
     let pastLaunches = Variable<[Launch]>([])
     let futureLaunches = Variable<[Launch]>([])
     
-    let scope = Variable<Scope>(.upcoming)
+    let scope = Variable<Scope>(.past)
     
     let searchText = Variable<String?>(nil)
 

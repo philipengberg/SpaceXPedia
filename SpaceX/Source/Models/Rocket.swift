@@ -175,10 +175,10 @@ extension Rocket {
             case ocean = "Ocean"
         }
         
-        let coreSerial: String
-        let flightNumber: Int
+        let coreSerial: String?
+        let flightNumber: Int?
         let block: Int?
-        let reused: Bool
+        let reused: Bool?
         let landingSuccess: Bool?
         let landingType: LandingType?
         let landingVehicle: String?
@@ -186,19 +186,19 @@ extension Rocket {
         init?(json: JSON) {
             guard let serial = json["core_serial"].string else { return nil }
             self.coreSerial = serial
-            self.flightNumber = json["flight"].intValue
+            self.flightNumber = json["flight"].int
             self.block = json["block"].int
-            self.reused = json["reused"].boolValue
+            self.reused = json["reused"].bool
             self.landingSuccess = json["land_success"].bool
             self.landingType = LandingType(rawValue: json["landing_type"].stringValue)
             self.landingVehicle = json["landing_vehicle"].string
         }
         
         var blockAndSerialDisplayName: String {
-            if let block = self.block {
-                return "B\(block) \(coreSerial)"
+            if let block = self.block, let serial = coreSerial {
+                return "B\(block) \(serial)"
             } else {
-                return coreSerial
+                return coreSerial ?? ""
             }
         }
     }

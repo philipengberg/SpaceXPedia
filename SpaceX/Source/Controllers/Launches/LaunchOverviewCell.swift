@@ -9,6 +9,7 @@
 import AlamofireImage
 import Foundation
 import UIKit
+import DateToolsSwift
 
 class LaunchOverviewCell: UITableViewCell {
     
@@ -49,6 +50,11 @@ class LaunchOverviewCell: UITableViewCell {
         $0.font = UIFont.systemFont(ofSize: 14)
     }
     
+    private let countdownLabel = UILabel().setUp {
+        $0.textColor = .lightTextColor
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+    }
+    
     private var payloadOrbitTagViews = [TagView]()
     private var landingSiteTagViews = [TagView]()
     
@@ -58,7 +64,7 @@ class LaunchOverviewCell: UITableViewCell {
         backgroundColor = .clear
         
         contentView.addSubviews([backgroundImageView, actualContentView])
-        actualContentView.addSubviews([missionPatchImageView, nameLabel, dateIconImageView, launchDateLabel, launchSiteIconImageView, launchSiteLabel, vehicleIconImageView, vehicleNameLabel])
+        actualContentView.addSubviews([missionPatchImageView, nameLabel, dateIconImageView, launchDateLabel, launchSiteIconImageView, launchSiteLabel, vehicleIconImageView, vehicleNameLabel, countdownLabel])
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,8 +90,9 @@ class LaunchOverviewCell: UITableViewCell {
         dateIconImageView.left = nameLabel.left
         dateIconImageView.top = nameLabel.bottom + 4
         
-        launchDateLabel.sizeToFit()
         launchDateLabel.left = dateIconImageView.right + 4
+        launchDateLabel.sizeToFit()
+        launchDateLabel.width = actualContentView.width - launchDateLabel.left - 10
         launchDateLabel.centerY = dateIconImageView.centerY
         
         launchSiteIconImageView.size = CGSize(width: 14, height: 14)
@@ -121,6 +128,11 @@ class LaunchOverviewCell: UITableViewCell {
             default: tagView.left = self.landingSiteTagViews[index - 1].right + 4
             }
         }
+        
+        countdownLabel.sizeToFit()
+        countdownLabel.left = missionPatchImageView.left
+        countdownLabel.width = missionPatchImageView.width
+        countdownLabel.top = missionPatchImageView.bottom + 10
     }
     
     func configure(with launch: Launch) {
@@ -128,11 +140,19 @@ class LaunchOverviewCell: UITableViewCell {
         nameLabel.text = launch.missionName
         
         if let firsStage = launch.rocket.firstStage {
-            vehicleNameLabel.text = firsStage.cores.map { $0.coreSerial }.joined(separator: ", ")
+            vehicleNameLabel.text = firsStage.cores.compactMap { $0.coreSerial }.joined(separator: ", ")
         }
         
         if let launchDate = launch.launchDate {
-            launchDateLabel.text = DateFormatter.launchDateFormatter.string(from: launchDate)
+            launchDateLabel.text = (launch.upcoming ? "\(DateFormatter().shortWeekdaySymbols[Calendar.current.component(.weekday, from: launchDate) - 1]), " : "") + DateFormatter.launchDateFormatter.string(from: launchDate)
+            
+            if launch.upcoming {
+                let lol = DateComponentsFormatter()
+                lol.unitsStyle = .full
+                lol.maximumUnitCount = 2
+                countdownLabel.text = lol.string(from: TimePeriod(beginning: Date(), end: launchDate).duration)
+                countdownLabel.isHidden = false
+            }
         }
         
         if let missionPatch = launch.links?.missionPatch, let missionPatchUrl = URL(string: missionPatch) {
@@ -198,6 +218,8 @@ class LaunchOverviewCell: UITableViewCell {
         
         launchDateLabel.text = nil
         launchSiteLabel.text = nil
+        
+        countdownLabel.isHidden = true
         
         missionPatchImageView.image = nil
         missionPatchImageView.af_cancelImageRequest()

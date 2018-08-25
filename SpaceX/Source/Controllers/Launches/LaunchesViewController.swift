@@ -50,7 +50,7 @@ class LaunchesViewController: UIViewController {
         searchController.searchBar.placeholder = "Search Launches"
         searchController.searchBar.searchBarStyle = .minimal
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.scopeButtonTitles = ["Upcoming", "Past"]
+        searchController.searchBar.scopeButtonTitles = ["Past", "Upcoming"]
         searchController.searchBar.showsScopeBar = true
         searchController.searchBar.delegate = self
         navigationItem.titleView = searchController.searchBar
@@ -60,7 +60,7 @@ class LaunchesViewController: UIViewController {
         
         viewModel.dataState.asObservable().subscribe(onNext: { [weak self] (dataState) in
             self?.listManager.state = dataState
-            self?.viewModel.scope.value = .upcoming
+            self?.viewModel.scope.value = .past
         }).disposed(by: bag)
         
         viewModel.filteredLaunches.asObservable().subscribe(onNext: { [weak self] _ in
@@ -73,6 +73,9 @@ class LaunchesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.view.setNeedsLayout() // force update layout...
+        navigationController?.view.layoutIfNeeded() // ... to fix height of the navigation bar
+        
         if let selectedIndexPath = _view.tableView.indexPathForSelectedRow {
             _view.tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
@@ -83,6 +86,13 @@ class LaunchesViewController: UIViewController {
         
         searchController.isActive = true
         searchController.isActive = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.view.setNeedsLayout() // force update layout...
+        navigationController?.view.layoutIfNeeded() // ... to fix height of the navigation bar
     }
     
     private func isFiltering() -> Bool {
@@ -107,6 +117,11 @@ extension LaunchesViewController: UISearchResultsUpdating {
 }
 
 extension LaunchesViewController: UISearchBarDelegate {
+    
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        searchController.searchBar.showsScopeBar = true
+//    }
+    
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         if let scope = LaunchesViewModel.Scope(rawValue: selectedScope) {
             viewModel.scope.value = scope

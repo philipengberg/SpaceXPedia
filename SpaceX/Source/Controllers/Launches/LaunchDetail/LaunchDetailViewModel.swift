@@ -63,7 +63,9 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
             sections.append(contentsOf: secondStage.payloads.map { generatePayloadSection(from: $0) })
         }
         
-        sections.append(generateLinksSection(from: launch))
+        if let links = generateLinksSection(from: launch) {
+            sections.append(links)
+        }
         
         return sections
     }
@@ -88,17 +90,28 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
     }
     
     private func generateBoosterSection(from core: Rocket.Core, coreNumber: Int?) -> InfoSection {
-        var props = [PropertyWithDetail(propertyName: "Serial", propertyValue: core.coreSerial)]
+        
+        var props = [PropertyWithDetail]()
+        
+        if let coreSerial = core.coreSerial {
+            props.append(PropertyWithDetail(propertyName: "Serial", propertyValue: coreSerial))
+        }
         
         if let block = core.block {
             props.append(PropertyWithDetail(propertyName: "Block", propertyValue: "\(block)"))
         }
         
+        if let landingType = core.landingType {
+            props.append(PropertyWithDetail(propertyName: "Landing type", propertyValue: landingType.rawValue))
+        }
         
-        props.append(contentsOf: [
-            PropertyWithDetail(propertyName: "Flight number", propertyValue: "\(core.flightNumber)"),
-            PropertyWithDetail(propertyName: "Reused", propertyValue: "\(core.reused ? "Yes" : "No")"),
-        ])
+        if let flightNumber = core.flightNumber {
+            props.append(PropertyWithDetail(propertyName: "Flight number", propertyValue: "#\(flightNumber)"))
+        }
+        
+        if let reused = core.reused {
+            props.append(PropertyWithDetail(propertyName: "Reused", propertyValue: "\(reused ? "Yes" : "No")"))
+        }
         
         if let landingType = core.landingType {
             props.append(PropertyWithDetail(propertyName: "Landing type", propertyValue: landingType.rawValue))
@@ -174,7 +187,7 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
         return InfoSection(sectionName: "Payload: \(payload.payloadId)", properties: props)
     }
     
-    private func generateLinksSection(from launch: Launch) -> InfoSection {
+    private func generateLinksSection(from launch: Launch) -> InfoSection? {
         var props = [PropertyWithDetail]()
         
         if let missionPatch = URL(string: launch.links?.missionPatch) {
@@ -209,6 +222,7 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
             props.append(PropertyWithDetail(propertyName: "Wikipedia", propertyValue: wikipedia.host!, detail: .web(url: wikipedia)))
         }
         
+        guard props.count > 0 else { return nil }
         return InfoSection(sectionName: "Links", properties: props)
     }
     
