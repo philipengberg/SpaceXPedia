@@ -69,7 +69,7 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
     }
     
     private func generateBasicInfoSection(from launch: Launch) -> InfoSection {
-        var props = [PropertyWithDetail(propertyName: "Flight number", propertyValue: "\(launch.flightNumber)")]
+        var props = [PropertyWithDetail(propertyName: "Flight number", propertyValue: "#\(launch.flightNumber)")]
         
         if let details = launch.details {
             props.append(PropertyWithDetail(propertyName: "Details", propertyValue: details, longValueText: true))
