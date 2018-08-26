@@ -18,7 +18,9 @@ class LaunchOverviewCell: UITableViewCell {
     
     private let actualContentView = UIView()
     
-    private let missionPatchImageView = UIImageView()
+    private let missionPatchImageView = UIImageView().setUp {
+        $0.contentMode = .scaleAspectFit
+    }
     
     private let nameLabel = UILabel().setUp {
         $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
@@ -53,7 +55,8 @@ class LaunchOverviewCell: UITableViewCell {
     
     private let countdownLabel = UILabel().setUp {
         $0.textColor = .lightTextColor
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        $0.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        $0.textAlignment = .center
     }
     
     private var payloadOrbitTagViews = [TagView]()
@@ -164,6 +167,10 @@ class LaunchOverviewCell: UITableViewCell {
         
         if let missionPatch = launch.links?.missionPatch, let missionPatchUrl = URL(string: missionPatch) {
             missionPatchImageView.af_setImage(withURL: missionPatchUrl)
+            missionPatchImageView.alpha = 1
+        } else {
+            missionPatchImageView.image = #imageLiteral(resourceName: "launch-placeholder")
+            missionPatchImageView.alpha = 0.7
         }
         
         if let launchSite = launch.site?.siteName {
