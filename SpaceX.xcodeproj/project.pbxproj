@@ -56,6 +56,13 @@
 		D496E28B212DA6E400F5CEAA /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496E288212DA6E400F5CEAA /* LaunchDetailView.swift */; };
 		D496E28C212DA6E400F5CEAA /* LaunchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496E289212DA6E400F5CEAA /* LaunchDetailViewModel.swift */; };
 		D496E28E212DA81F00F5CEAA /* LaunchVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */; };
+		D4FED83121330C82009A09EE /* LaunchTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FED82E21330C82009A09EE /* LaunchTimelineViewController.swift */; };
+		D4FED83221330C82009A09EE /* LaunchTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FED82F21330C82009A09EE /* LaunchTimelineView.swift */; };
+		D4FED83321330C82009A09EE /* LaunchTimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FED83021330C82009A09EE /* LaunchTimelineViewModel.swift */; };
+		D4FED8352133242B009A09EE /* LaunchTimelineDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FED8342133242B009A09EE /* LaunchTimelineDayCell.swift */; };
+		D4FED8372133289E009A09EE /* LaunchTimelineMonthStartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FED8362133289E009A09EE /* LaunchTimelineMonthStartCell.swift */; };
+		D4FED83921332B0D009A09EE /* LaunchTimelineLaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FED83821332B0D009A09EE /* LaunchTimelineLaunchCell.swift */; };
+		D4FED83B21333AD6009A09EE /* Date+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FED83A21333AD6009A09EE /* Date+Utility.swift */; };
 		DFFC75BBCBC58F9EC7956C26 /* Pods_SpaceX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B159942623C91538977E353 /* Pods_SpaceX.framework */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +144,13 @@
 		D496E288212DA6E400F5CEAA /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
 		D496E289212DA6E400F5CEAA /* LaunchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailViewModel.swift; sourceTree = "<group>"; };
 		D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVideoCell.swift; sourceTree = "<group>"; };
+		D4FED82E21330C82009A09EE /* LaunchTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTimelineViewController.swift; sourceTree = "<group>"; };
+		D4FED82F21330C82009A09EE /* LaunchTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTimelineView.swift; sourceTree = "<group>"; };
+		D4FED83021330C82009A09EE /* LaunchTimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTimelineViewModel.swift; sourceTree = "<group>"; };
+		D4FED8342133242B009A09EE /* LaunchTimelineDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTimelineDayCell.swift; sourceTree = "<group>"; };
+		D4FED8362133289E009A09EE /* LaunchTimelineMonthStartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchTimelineMonthStartCell.swift; sourceTree = "<group>"; };
+		D4FED83821332B0D009A09EE /* LaunchTimelineLaunchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchTimelineLaunchCell.swift; sourceTree = "<group>"; };
+		D4FED83A21333AD6009A09EE /* Date+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utility.swift"; sourceTree = "<group>"; };
 		EB0EE27A97D057DC46F20255 /* Pods_SpaceXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F23AD974B57E0B6B617FB19E /* Pods-SpaceXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceXUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpaceXUITests/Pods-SpaceXUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -284,6 +298,7 @@
 				D41551A7212B455A008848DE /* UINavigationController+Utility.swift */,
 				D41CA16D212C948A00772581 /* DateFormatter+Utility.swift */,
 				D41AE5C921308F0800EE3EAC /* URL+Utility.swift */,
+				D4FED83A21333AD6009A09EE /* Date+Utility.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -364,6 +379,7 @@
 				D41CA167212C918000772581 /* LaunchesViewModel.swift */,
 				D41CA166212C918000772581 /* LaunchesView.swift */,
 				D41CA16F212C9E9500772581 /* LaunchOverviewCell.swift */,
+				D4FED82D21330C6D009A09EE /* Timeline */,
 				D496E286212DA6CA00F5CEAA /* LaunchDetail */,
 				D48D0520212F3A3300028A84 /* LaunchSite */,
 			);
@@ -390,6 +406,19 @@
 				D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */,
 			);
 			path = LaunchDetail;
+			sourceTree = "<group>";
+		};
+		D4FED82D21330C6D009A09EE /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				D4FED82E21330C82009A09EE /* LaunchTimelineViewController.swift */,
+				D4FED83021330C82009A09EE /* LaunchTimelineViewModel.swift */,
+				D4FED82F21330C82009A09EE /* LaunchTimelineView.swift */,
+				D4FED8342133242B009A09EE /* LaunchTimelineDayCell.swift */,
+				D4FED8362133289E009A09EE /* LaunchTimelineMonthStartCell.swift */,
+				D4FED83821332B0D009A09EE /* LaunchTimelineLaunchCell.swift */,
+			);
+			path = Timeline;
 			sourceTree = "<group>";
 		};
 		FC7167A9CCCE287D88EC11A9 /* Pods */ = {
@@ -586,6 +615,7 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/RSSwizzle/RSSwizzle.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${PODS_ROOT}/Reveal-SDK/RevealServer-17/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
@@ -604,6 +634,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSSwizzle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
@@ -644,6 +675,7 @@
 			files = (
 				D41551A2212B428D008848DE /* Router.swift in Sources */,
 				D415518D212B33F3008848DE /* PlaceholderView.swift in Sources */,
+				D4FED8352133242B009A09EE /* LaunchTimelineDayCell.swift in Sources */,
 				D4155195212B3820008848DE /* RocketCell.swift in Sources */,
 				D4155199212B3EA0008848DE /* UIColor+Utility.swift in Sources */,
 				D496E28C212DA6E400F5CEAA /* LaunchDetailViewModel.swift in Sources */,
@@ -660,23 +692,28 @@
 				D496E28E212DA81F00F5CEAA /* LaunchVideoCell.swift in Sources */,
 				D415518F212B349B008848DE /* Setup.swift in Sources */,
 				D4155185212B0A4F008848DE /* Rocket.swift in Sources */,
+				D4FED83121330C82009A09EE /* LaunchTimelineViewController.swift in Sources */,
 				D4155175212B082F008848DE /* RocketsViewController.swift in Sources */,
 				D4155183212B0A1F008848DE /* ModelExtensions.swift in Sources */,
+				D4FED83B21333AD6009A09EE /* Date+Utility.swift in Sources */,
 				D41551A8212B455A008848DE /* UINavigationController+Utility.swift in Sources */,
 				D48D0525212F3A4400028A84 /* LaunchSiteView.swift in Sources */,
 				D48E2665212BE843008F6785 /* RocketImageCell.swift in Sources */,
 				D415519E212B3FDB008848DE /* RocketDetailViewController.swift in Sources */,
 				D48D0526212F3A4400028A84 /* LaunchSiteViewModel.swift in Sources */,
+				D4FED83321330C82009A09EE /* LaunchTimelineViewModel.swift in Sources */,
 				D4155187212B227C008848DE /* Measurements.swift in Sources */,
 				D48D052A212F425800028A84 /* MapCell.swift in Sources */,
 				D4155193212B373A008848DE /* LoadingCell.swift in Sources */,
 				D4155191212B36C6008848DE /* UITableView+Reusable.swift in Sources */,
 				D496E28B212DA6E400F5CEAA /* LaunchDetailView.swift in Sources */,
 				D41AE5CA21308F0800EE3EAC /* URL+Utility.swift in Sources */,
+				D4FED83221330C82009A09EE /* LaunchTimelineView.swift in Sources */,
 				D4155171212B0561008848DE /* SpaceXAPI.swift in Sources */,
 				D48D0524212F3A4400028A84 /* LaunchSiteViewController.swift in Sources */,
 				D41551A6212B446D008848DE /* Array+Utility.swift in Sources */,
 				D41CA169212C918000772581 /* LaunchesView.swift in Sources */,
+				D4FED83921332B0D009A09EE /* LaunchTimelineLaunchCell.swift in Sources */,
 				D4155140212B02C9008848DE /* AppDelegate.swift in Sources */,
 				D4155181212B09FA008848DE /* Action+API.swift in Sources */,
 				D48D0528212F3B4000028A84 /* LaunchSite.swift in Sources */,
@@ -685,6 +722,7 @@
 				D41CA16A212C918000772581 /* LaunchesViewModel.swift in Sources */,
 				D415517B212B0912008848DE /* UIView+Utility.swift in Sources */,
 				D41551AA212B46D0008848DE /* StyleManager.swift in Sources */,
+				D4FED8372133289E009A09EE /* LaunchTimelineMonthStartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

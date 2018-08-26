@@ -28,7 +28,7 @@ class WindowManager {
         
         func viewController() -> UIViewController {
             switch self {
-            case .launches: return LaunchesViewController(viewModel: LaunchesViewModel(api: SpaceXAPI))
+            case .launches: return LaunchTimelineViewController(viewModel: LaunchTimelineViewModel(api: SpaceXAPI))
             case .rockets:  return RocketsViewController(viewModel: RocketsViewModel(api: SpaceXAPI))
             }
         }
