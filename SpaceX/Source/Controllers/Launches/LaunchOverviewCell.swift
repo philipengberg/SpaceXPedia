@@ -16,7 +16,9 @@ class LaunchOverviewCell: UITableViewCell {
     
     private let backgroundImageView = UIImageView(image: #imageLiteral(resourceName: "launch-background"))
     
-    private let actualContentView = UIView()
+    private let actualContentView = UIView().setUp {
+        $0.clipsToBounds = true
+    }
     
     private let missionPatchImageView = UIImageView().setUp {
         $0.contentMode = .scaleAspectFit
@@ -88,8 +90,13 @@ class LaunchOverviewCell: UITableViewCell {
         missionPatchImageView.top = 20
         missionPatchImageView.left = 16
         
+        disclosureIndicatorImageView.sizeToFit()
+        disclosureIndicatorImageView.centerY = actualContentView.boundsCenterY
+        disclosureIndicatorImageView.right = actualContentView.width - 20
+        
         nameLabel.sizeToFit()
         nameLabel.left = missionPatchImageView.right + 14
+        nameLabel.width = actualContentView.width - nameLabel.left - 10
         nameLabel.top = 16
         
         dateIconImageView.size = CGSize(width: 14, height: 14)
@@ -98,7 +105,7 @@ class LaunchOverviewCell: UITableViewCell {
         
         launchDateLabel.left = dateIconImageView.right + 4
         launchDateLabel.sizeToFit()
-        launchDateLabel.width = actualContentView.width - launchDateLabel.left - 10
+        launchDateLabel.width = disclosureIndicatorImageView.left - launchDateLabel.left - 5
         launchDateLabel.centerY = dateIconImageView.centerY
         
         launchSiteIconImageView.size = CGSize(width: 14, height: 14)
@@ -107,6 +114,7 @@ class LaunchOverviewCell: UITableViewCell {
         
         launchSiteLabel.sizeToFit()
         launchSiteLabel.left = launchSiteIconImageView.right + 4
+        launchSiteLabel.width = disclosureIndicatorImageView.left - launchSiteLabel.left - 5
         launchSiteLabel.centerY = launchSiteIconImageView.centerY
         
         vehicleIconImageView.size = CGSize(width: 14, height: 14)
@@ -115,6 +123,7 @@ class LaunchOverviewCell: UITableViewCell {
         
         vehicleNameLabel.sizeToFit()
         vehicleNameLabel.left = vehicleIconImageView.right + 4
+        vehicleNameLabel.width = disclosureIndicatorImageView.left - vehicleNameLabel.left - 5
         vehicleNameLabel.centerY = vehicleIconImageView.centerY
         
         payloadOrbitTagViews.enumerated().forEach { index, tagView in
@@ -139,18 +148,16 @@ class LaunchOverviewCell: UITableViewCell {
         countdownLabel.left = missionPatchImageView.left
         countdownLabel.width = missionPatchImageView.width
         countdownLabel.top = missionPatchImageView.bottom + 10
-        
-        disclosureIndicatorImageView.sizeToFit()
-        disclosureIndicatorImageView.centerY = actualContentView.boundsCenterY
-        disclosureIndicatorImageView.right = actualContentView.width - 20
     }
     
     func configure(with launch: Launch) {
         
         nameLabel.text = launch.missionName
         
-        if let firsStage = launch.rocket.firstStage {
-            vehicleNameLabel.text = firsStage.cores.compactMap { $0.coreSerial }.joined(separator: ", ")
+        if let firstCoreBlock = launch.rocket.firstStage?.cores.first?.block {
+            vehicleNameLabel.text = "\(launch.rocket.name) \(launch.rocket.version) Block \(firstCoreBlock)"
+        } else {
+            vehicleNameLabel.text = "\(launch.rocket.name) \(launch.rocket.version)"
         }
         
         if let launchDate = launch.launchDate {
