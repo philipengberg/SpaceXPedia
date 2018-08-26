@@ -17,8 +17,8 @@ class LaunchesViewModel: ValuesViewModel<Launch> {
     
     let filteredLaunches = Variable<[Launch]>([])
     
-    let pastLaunches = Variable<[Launch]>([])
-    let futureLaunches = Variable<[Launch]>([])
+    private let pastLaunches = Variable<[Launch]>([])
+    private let futureLaunches = Variable<[Launch]>([])
     
     let scope = Variable<Scope>(.past)
     

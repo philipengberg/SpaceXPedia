@@ -60,8 +60,6 @@ class LaunchesViewController: UIViewController {
         
         viewModel.dataState.asObservable().subscribe(onNext: { [weak self] (dataState) in
             self?.listManager.state = dataState
-            
-            self?.viewModel.scope.value = .past
         }).disposed(by: bag)
         
         viewModel.filteredLaunches.asObservable().subscribe(onNext: { [weak self] _ in
@@ -74,6 +72,10 @@ class LaunchesViewController: UIViewController {
         
         viewModel.object.asObservable().subscribe(onNext: { [weak self] _ in
             self?._view.refreshControl.endRefreshing()
+        }).disposed(by: bag)
+        
+        viewModel.object.asObservable().skip(1).take(1).subscribe(onNext: { [weak self] (_) in
+            self?.viewModel.scope.value = .past
         }).disposed(by: bag)
         
         viewModel.reloadData()
