@@ -28,8 +28,8 @@ class WindowManager {
         
         func viewController() -> UIViewController {
             switch self {
-            case .launches: return LaunchTimelineViewController(viewModel: LaunchTimelineViewModel(api: SpaceXAPI))
-            case .rockets:  return RocketsViewController(viewModel: RocketsViewModel(api: SpaceXAPI))
+            case .launches: return LaunchesViewController(viewModel: LaunchesViewModel(api: SpaceXAPI))
+            case .rockets:  return LaunchTimelineViewController(viewModel: LaunchTimelineViewModel(api: SpaceXAPI))
             }
         }
     }
@@ -79,7 +79,7 @@ class WindowManager {
             return UINavigationController(rootViewController: viewController)
         }
         
-        tabBarController.tabBar.isHidden = true
+//        tabBarController.tabBar.isHidden = true
         
         rootNavigationController.pushViewController(tabBarController, animated: false)
     }

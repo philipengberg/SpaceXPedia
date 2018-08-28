@@ -76,9 +76,9 @@ class RocketDetailViewModel: ValueViewModel<Rocket> {
 extension Rocket.RocketType {
     var image: UIImage? {
         switch self {
-        case .falcon1: return #imageLiteral(resourceName: "Falcon1Rocket")
-        case .falcon9: return #imageLiteral(resourceName: "Falcon9B5Rocket")
-        case .falconHeavy: return #imageLiteral(resourceName: "FalconHeavyRocket")
+        case .falcon1: return #imageLiteral(resourceName: "rocket-falcon-9-dragon-1")
+        case .falcon9: return #imageLiteral(resourceName: "rocket-falcon-9-fairing")
+        case .falconHeavy: return #imageLiteral(resourceName: "rocket-falcon-heavy")
         default: return nil
         }
     }

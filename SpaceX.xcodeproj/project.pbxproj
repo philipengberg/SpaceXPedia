@@ -45,6 +45,7 @@
 		D41CA16C212C919600772581 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA16B212C919600772581 /* Launch.swift */; };
 		D41CA16E212C948A00772581 /* DateFormatter+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA16D212C948A00772581 /* DateFormatter+Utility.swift */; };
 		D41CA170212C9E9500772581 /* LaunchOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA16F212C9E9500772581 /* LaunchOverviewCell.swift */; };
+		D45ED89721348E2E00E16398 /* UIFont+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45ED89621348E2E00E16398 /* UIFont+Utility.swift */; };
 		D48D051F212F297700028A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48D051E212F297700028A84 /* Assets.xcassets */; };
 		D48D0524212F3A4400028A84 /* LaunchSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D0521212F3A4400028A84 /* LaunchSiteViewController.swift */; };
 		D48D0525212F3A4400028A84 /* LaunchSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D0522212F3A4400028A84 /* LaunchSiteView.swift */; };
@@ -133,6 +134,7 @@
 		D41CA16B212C919600772581 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		D41CA16D212C948A00772581 /* DateFormatter+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Utility.swift"; sourceTree = "<group>"; };
 		D41CA16F212C9E9500772581 /* LaunchOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOverviewCell.swift; sourceTree = "<group>"; };
+		D45ED89621348E2E00E16398 /* UIFont+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Utility.swift"; sourceTree = "<group>"; };
 		D48D051E212F297700028A84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48D0521212F3A4400028A84 /* LaunchSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSiteViewController.swift; sourceTree = "<group>"; };
 		D48D0522212F3A4400028A84 /* LaunchSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSiteView.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				D41CA16D212C948A00772581 /* DateFormatter+Utility.swift */,
 				D41AE5C921308F0800EE3EAC /* URL+Utility.swift */,
 				D4FED83A21333AD6009A09EE /* Date+Utility.swift */,
+				D45ED89621348E2E00E16398 /* UIFont+Utility.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				D41551A2212B428D008848DE /* Router.swift in Sources */,
 				D415518D212B33F3008848DE /* PlaceholderView.swift in Sources */,
 				D4FED8352133242B009A09EE /* LaunchTimelineDayCell.swift in Sources */,
+				D45ED89721348E2E00E16398 /* UIFont+Utility.swift in Sources */,
 				D4155195212B3820008848DE /* RocketCell.swift in Sources */,
 				D4155199212B3EA0008848DE /* UIColor+Utility.swift in Sources */,
 				D496E28C212DA6E400F5CEAA /* LaunchDetailViewModel.swift in Sources */,

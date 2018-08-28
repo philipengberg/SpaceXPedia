@@ -15,7 +15,6 @@ class LaunchTimelineViewModel: ValuesViewModel<Launch> {
     enum RowType {
         case emptyDay
         case emptyMonthStart(Date)
-        case pastFutureDivider
         case launch(Launch)
     }
     

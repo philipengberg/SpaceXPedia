@@ -49,7 +49,7 @@ struct Rocket: Serialization {
         self.id = json["rocket_id"].string ?? json["id"].stringValue
         self.name = json["rocket_name"].string ?? json["name"].stringValue
         self.active = json["active"].boolValue
-        self.type = RocketType(rawValue: json["id"].stringValue) ?? .unknown
+        self.type = RocketType(rawValue: id) ?? .unknown
         self.version = json["rocket_type"].stringValue
         self.numberOfStages = json["stages"].intValue
         self.diameter = Distance(json: json["diameter"]) ?? .empty
@@ -131,6 +131,33 @@ extension Rocket {
 }
 
 extension Rocket {
+    var versionAndPayloadSpecificRocketImage: UIImage? {
+        switch self.type {
+        case .falcon9:
+            if let payloadType = secondStage?.payloads.first?.payloadType {
+                switch payloadType {
+                case .dragon1, .dragon11: return UIImage(named: "rocket-falcon-9-dragon-1")
+                case .dragon2: return UIImage(named: "rocket-falcon-9-dragon-2")
+                case .sattelite:
+                    if self.firstStage?.cores.first?.block == 5 {
+                        return UIImage(named: "rocet-falcon-9-B5-fairing")
+                    } else {
+                        return UIImage(named: "rocket-falcon-9-fairing")
+                    }
+                case .unknown: return UIImage(named: "rocket-falcon-9-fairing")
+                }
+            } else {
+                return UIImage(named: "rocket-falcon-9-fairing")
+            }
+            
+        case .falcon1: return UIImage(named: "rocket-falcon-1")
+        case .falconHeavy: return UIImage(named: "rocket-falcon-heavy")
+        case .bfr, .unknown: return nil
+        }
+    }
+}
+
+extension Rocket {
     struct LandingLegs: Serialization {
         let number: Int
         let material: String
@@ -207,13 +234,21 @@ extension Rocket {
 extension Rocket {
     struct Payload: Serialization {
         
+        enum `Type`: String {
+            case sattelite = "Satellite"
+            case dragon1 = "Dragon 1.0"
+            case dragon11 = "Dragon 1.1"
+            case dragon2 = "Dragon 2.0"
+            case unknown
+        }
+        
         let payloadId: String
         let reused: Bool
         let capSerial: String
         let customers: [String]
         let nationality: String?
         let manufacturer: String?
-        let payloadType: String
+        let payloadType: `Type`
         let payloadMass: Weight?
         let orbit: String
         let orbitParameters: OrbitParameters?
@@ -226,7 +261,7 @@ extension Rocket {
             self.customers = json["customers"].arrayValue.compactMap { $0.string }
             self.nationality = json["nationality"].string
             self.manufacturer = json["manufacturer"].string
-            self.payloadType = json["payload_type"].stringValue
+            self.payloadType = `Type`(rawValue: json["payload_type"].stringValue) ?? .unknown
             self.orbit = json["orbit"].stringValue
             self.orbitParameters = OrbitParameters(json: json["orbit_params"])
             

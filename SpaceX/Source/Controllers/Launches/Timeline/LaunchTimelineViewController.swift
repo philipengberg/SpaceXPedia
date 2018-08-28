@@ -117,7 +117,13 @@ extension LaunchTimelineViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.dataSource.value[indexPath.row].staticHeight
+        let rowType = viewModel.dataSource.value[indexPath.row]
+        switch rowType {
+        case .emptyDay: return 16
+        case .emptyMonthStart: return 33
+        case .launch(let launch):
+            return LaunchTimelineLaunchCell.height(for: launch, constrainedTo: tableView.width)
+        }
     }
 }
 
