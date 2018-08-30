@@ -39,6 +39,18 @@ struct Launch: Serialization {
         self.links = Links(json: json["links"])
     }
     
+    var searchString: String {
+        let searchTerms = [missionName, details, rocket.name, rocket.version] + (rocket.firstStage?.cores.map { $0.searchString } ?? [])
+        return searchTerms.compactMap { $0?.lowercased() }.joined(separator: " ")
+    }
+    
+}
+
+extension String {
+    init?(int: Int?) {
+        guard let val = int else { return nil }
+        self = "\(val)"
+    }
 }
 
 extension Launch {

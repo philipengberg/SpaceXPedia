@@ -201,6 +201,10 @@ extension Rocket {
                 return coreSerial ?? ""
             }
         }
+        
+        var searchString: String {
+            return [landingType?.rawValue, coreSerial, String(int: flightNumber), landingVehicle, "block", String(int: block)].compactMap { $0?.lowercased() }.joined(separator: " ")
+        }
     }
 }
 
@@ -235,6 +239,12 @@ extension Rocket {
             } else {
                 self.payloadMass = nil
             }
+        }
+        
+        var searchString: String {
+            var searchTerms = [capSerial, nationality, manufacturer, payloadType]
+            searchTerms.append(contentsOf: customers)
+            return searchTerms.compactMap { $0?.lowercased() }.joined(separator: " ")
         }
         
         struct OrbitParameters: Serialization {

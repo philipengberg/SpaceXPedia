@@ -36,7 +36,7 @@ class LaunchesViewModel: ValuesViewModel<Launch> {
         
         Observable.combineLatest(scopeDataSourceObservable, searchText.asObservable()).map { (dataSource, searchText) in
             guard !searchText.isEmpty else { return dataSource }
-            return dataSource.filter { $0.missionName.lowercased().contains(searchText.lowercased()) }
+            return dataSource.filter { $0.searchString.lowercased().contains(searchText.lowercased()) }
         }.bind(to: filteredLaunches).disposed(by: bag)
         
         object.asObservable().map { $0.filter { !$0.upcoming } }.map { $0.reversed() }.bind(to: pastLaunches).disposed(by: bag)
