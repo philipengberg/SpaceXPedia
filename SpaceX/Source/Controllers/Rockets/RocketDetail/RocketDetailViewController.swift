@@ -41,6 +41,10 @@ class RocketDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.object.asObservable().unwrap() .take(1).subscribe(onNext: { (rocket) in
+            Analytics.trackRocketDetailShown(for: rocket)
+        }).disposed(by: bag)
+        
         viewModel.object.asObservable().unwrap().subscribe(onNext: { [weak self] (rocket) in
             self?.title = rocket.name
         }).disposed(by: bag)

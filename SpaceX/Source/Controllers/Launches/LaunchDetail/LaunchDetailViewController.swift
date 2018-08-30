@@ -40,6 +40,10 @@ class LaunchDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.object.asObservable().unwrap().take(1).subscribe(onNext: { (launch) in
+            Analytics.trackLaunchDetailShown(for: launch)
+        }).disposed(by: bag)
+        
         viewModel.object.asObservable().unwrap().map { $0.missionName }.bind(to: self.rx.title).disposed(by: bag)
         
         _view.tableView.registerCell(LaunchVideoCell.self)

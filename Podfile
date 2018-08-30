@@ -10,6 +10,7 @@ target 'SpaceX' do
   # Analytics
   pod 'Fabric', '1.7.7'
   pod 'Crashlytics', '3.10.2'
+  pod 'Amplitude-iOS', '4.3.1'
 
   # Networking
   pod 'Alamofire', '4.7.2'

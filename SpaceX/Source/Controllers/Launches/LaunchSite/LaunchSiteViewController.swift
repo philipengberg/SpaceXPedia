@@ -44,6 +44,10 @@ class LaunchSiteViewController: UIViewController {
         _view.tableView.registerCell(MapCell.self)
         _view.tableView.registerCell(RocketCell.self)
         
+        viewModel.object.asObservable().unwrap() .take(1).subscribe(onNext: { (launchSite) in
+            Analytics.trackLaunchSiteShown(for: launchSite)
+        }).disposed(by: bag)
+        
         viewModel.object.asObservable().unwrap().map { $0.location.name }.bind(to: self.rx.title).disposed(by: bag)
         
         viewModel.dataState.asObservable().subscribe(onNext: { [weak self] (dataState) in
