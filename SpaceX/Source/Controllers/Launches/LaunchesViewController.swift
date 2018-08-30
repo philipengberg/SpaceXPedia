@@ -56,11 +56,11 @@ class LaunchesViewController: UIViewController {
         searchController.searchBar.placeholder = "Search Launches"
         searchController.searchBar.searchBarStyle = .minimal
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.scopeButtonTitles = ["Past", "Upcoming"]
-//        searchController.searchBar.showsScopeBar = true
-        searchController.searchBar.delegate = self
         navigationItem.titleView = searchController.searchBar
         definesPresentationContext = true
+        
+        _view.segmentedControl.rx.selectedSegmentIndex.asObservable().map { LaunchesViewModel.Scope(rawValue: $0) }.unwrap().bind(to: viewModel.scope).disposed(by: bag)
+        _view.segmentedControl.selectedSegmentIndex = 0
         
         _view.tableView.registerCell(LaunchOverviewCell.self)
         
@@ -130,19 +130,6 @@ extension LaunchesViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         viewModel.searchText.value = searchController.searchBar.text ?? ""
-    }
-}
-
-extension LaunchesViewController: UISearchBarDelegate {
-    
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        searchController.searchBar.showsScopeBar = true
-//    }
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        if let scope = LaunchesViewModel.Scope(rawValue: selectedScope) {
-            viewModel.scope.value = scope
-        }
     }
 }
 

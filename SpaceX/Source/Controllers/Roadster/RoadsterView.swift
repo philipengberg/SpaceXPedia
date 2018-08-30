@@ -26,6 +26,10 @@ class RoadsterView: UIView {
         $0.alpha = 0.5
     }
     
+    let spinner = UIActivityIndicatorView().setUp {
+        $0.color = #colorLiteral(red: 0.337254902, green: 0.431372549, blue: 0.5843137255, alpha: 1)
+    }
+    
     private let gradientLayer = CAGradientLayer()
     
     override init(frame: CGRect) {
@@ -37,9 +41,7 @@ class RoadsterView: UIView {
         
         self.layer.addSublayer(gradientLayer)
         
-        addSubviews([roadsterImageView, textLabel, updatedLabel])
-        
-//        backgroundColor = #colorLiteral(red: 0.06274509804, green: 0.02745098039, blue: 0.1490196078, alpha: 1)
+        addSubviews([roadsterImageView, textLabel, updatedLabel, spinner])
         
         setNeedsUpdateConstraints()
     }
@@ -57,7 +59,8 @@ class RoadsterView: UIView {
     override func updateConstraints() {
         
         roadsterImageView.snp.updateConstraints { (make) in
-            make.top.equalTo(safeAreaLayoutGuide).offset(40)
+            make.top.greaterThanOrEqualTo(safeAreaLayoutGuide)
+            make.top.lessThanOrEqualTo(safeAreaLayoutGuide).offset(40)
             make.width.equalToSuperview().offset(-100)
             make.centerX.equalToSuperview()
             make.height.lessThanOrEqualTo(roadsterImageView.snp.width)
@@ -65,14 +68,19 @@ class RoadsterView: UIView {
         
         textLabel.snp.updateConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.top.equalTo(roadsterImageView.snp.bottom).offset(20)
+            make.top.lessThanOrEqualTo(roadsterImageView.snp.bottom).offset(20)
             make.width.equalToSuperview().offset(-60)
-            make.bottom.equalTo(updatedLabel.snp.top)
+            make.bottom.equalTo(updatedLabel.snp.top).offset(-20)
         }
         
         updatedLabel.snp.updateConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
+            make.bottom.greaterThanOrEqualTo(safeAreaLayoutGuide).offset(-20)
+            make.bottom.lessThanOrEqualTo(safeAreaLayoutGuide)
+        }
+        
+        spinner.snp.updateConstraints { (make) in
+            make.center.equalTo(textLabel)
         }
         
         super.updateConstraints()

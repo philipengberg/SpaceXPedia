@@ -56,6 +56,8 @@ class RoadsterViewController: UIViewController {
         }).disposed(by: bag)
         navigationItem.leftBarButtonItem = close
         
+        viewModel.loadAction.executing.bind(to: _view.spinner.rx.isAnimating).disposed(by: bag)
+        
         viewModel.object.asObservable().unwrap().subscribe(onNext: { [weak self] (roadster) in
             guard let s = self else { return }
             
