@@ -62,3 +62,21 @@ struct Thrust: Serialization {
     
     static let empty = Thrust(kiloNewtons: 0, poundsForce: 0)
 }
+
+struct Speed: Serialization {
+    let kmh: Double
+    let mph: Double
+    
+    init?(json: JSON) {
+        guard json["speed_kph"].exists() && json["speed_mph"].exists() else { return nil }
+        self.kmh = json["speed_kph"].doubleValue
+        self.mph = json["speed_mph"].doubleValue
+    }
+    
+    init(kmh: Double, mph: Double) {
+        self.kmh = kmh
+        self.mph = mph
+    }
+    
+    static let empty = Speed(kmh: 0, mph: 0)
+}

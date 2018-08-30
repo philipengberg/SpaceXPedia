@@ -101,6 +101,7 @@ enum SpaceXTarget {
     case allLaunches
     case launch(id: String)
     case launchSite(id: String)
+    case roadster
 }
 
 extension SpaceXTarget: TargetType {
@@ -136,6 +137,7 @@ extension SpaceXTarget: TargetType {
         case .allLaunches:      return "/launches/all"
         case .launch(let id):   return "/launcehs/\(id)"
         case .launchSite(let id): return "/launchpads/\(id)"
+        case .roadster:         return "/info/roadster"
         }
     }
     

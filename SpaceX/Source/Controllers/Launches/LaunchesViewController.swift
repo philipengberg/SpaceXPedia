@@ -42,6 +42,12 @@ class LaunchesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let lol = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-starman").withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
+        lol.rx.tap.subscribe(onNext: { [weak self] (_) in
+            self?.present(UINavigationController(rootViewController: RoadsterViewController(viewModel: RoadsterViewModel(api: SpaceXAPI))), animated: true, completion: nil)
+        }).disposed(by: bag)
+        navigationItem.leftBarButtonItem = lol
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.backgroundColor = #colorLiteral(red: 0.03137254902, green: 0.3254901961, blue: 0.5254901961, alpha: 1)
@@ -51,7 +57,7 @@ class LaunchesViewController: UIViewController {
         searchController.searchBar.searchBarStyle = .minimal
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.scopeButtonTitles = ["Past", "Upcoming"]
-        searchController.searchBar.showsScopeBar = true
+//        searchController.searchBar.showsScopeBar = true
         searchController.searchBar.delegate = self
         navigationItem.titleView = searchController.searchBar
         definesPresentationContext = true
