@@ -8,15 +8,21 @@
 
 import AlamofireImage
 import Foundation
+import pop
 import UIKit
+import DateToolsSwift
 
 class LaunchOverviewCell: UITableViewCell {
     
     private let backgroundImageView = UIImageView(image: #imageLiteral(resourceName: "launch-background"))
     
-    private let actualContentView = UIView()
+    private let actualContentView = UIView().setUp {
+        $0.clipsToBounds = true
+    }
     
-    private let missionPatchImageView = UIImageView()
+    private let missionPatchImageView = UIImageView().setUp {
+        $0.contentMode = .scaleAspectFit
+    }
     
     private let nameLabel = UILabel().setUp {
         $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
@@ -49,8 +55,16 @@ class LaunchOverviewCell: UITableViewCell {
         $0.font = UIFont.systemFont(ofSize: 14)
     }
     
+    private let countdownLabel = UILabel().setUp {
+        $0.textColor = .lightTextColor
+        $0.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        $0.textAlignment = .center
+    }
+    
     private var payloadOrbitTagViews = [TagView]()
     private var landingSiteTagViews = [TagView]()
+    
+    private let disclosureIndicatorImageView = UIImageView(image: #imageLiteral(resourceName: "disclosure-indicator"))
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -58,7 +72,7 @@ class LaunchOverviewCell: UITableViewCell {
         backgroundColor = .clear
         
         contentView.addSubviews([backgroundImageView, actualContentView])
-        actualContentView.addSubviews([missionPatchImageView, nameLabel, dateIconImageView, launchDateLabel, launchSiteIconImageView, launchSiteLabel, vehicleIconImageView, vehicleNameLabel])
+        actualContentView.addSubviews([missionPatchImageView, nameLabel, dateIconImageView, launchDateLabel, launchSiteIconImageView, launchSiteLabel, vehicleIconImageView, vehicleNameLabel, countdownLabel, disclosureIndicatorImageView])
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,16 +90,22 @@ class LaunchOverviewCell: UITableViewCell {
         missionPatchImageView.top = 20
         missionPatchImageView.left = 16
         
+        disclosureIndicatorImageView.sizeToFit()
+        disclosureIndicatorImageView.centerY = actualContentView.boundsCenterY
+        disclosureIndicatorImageView.right = actualContentView.width - 20
+        
         nameLabel.sizeToFit()
         nameLabel.left = missionPatchImageView.right + 14
+        nameLabel.width = actualContentView.width - nameLabel.left - 10
         nameLabel.top = 16
         
         dateIconImageView.size = CGSize(width: 14, height: 14)
         dateIconImageView.left = nameLabel.left
         dateIconImageView.top = nameLabel.bottom + 4
         
-        launchDateLabel.sizeToFit()
         launchDateLabel.left = dateIconImageView.right + 4
+        launchDateLabel.sizeToFit()
+        launchDateLabel.width = disclosureIndicatorImageView.left - launchDateLabel.left - 5
         launchDateLabel.centerY = dateIconImageView.centerY
         
         launchSiteIconImageView.size = CGSize(width: 14, height: 14)
@@ -94,6 +114,7 @@ class LaunchOverviewCell: UITableViewCell {
         
         launchSiteLabel.sizeToFit()
         launchSiteLabel.left = launchSiteIconImageView.right + 4
+        launchSiteLabel.width = disclosureIndicatorImageView.left - launchSiteLabel.left - 5
         launchSiteLabel.centerY = launchSiteIconImageView.centerY
         
         vehicleIconImageView.size = CGSize(width: 14, height: 14)
@@ -102,6 +123,7 @@ class LaunchOverviewCell: UITableViewCell {
         
         vehicleNameLabel.sizeToFit()
         vehicleNameLabel.left = vehicleIconImageView.right + 4
+        vehicleNameLabel.width = disclosureIndicatorImageView.left - vehicleNameLabel.left - 5
         vehicleNameLabel.centerY = vehicleIconImageView.centerY
         
         payloadOrbitTagViews.enumerated().forEach { index, tagView in
@@ -121,22 +143,41 @@ class LaunchOverviewCell: UITableViewCell {
             default: tagView.left = self.landingSiteTagViews[index - 1].right + 4
             }
         }
+        
+        countdownLabel.sizeToFit()
+        countdownLabel.left = missionPatchImageView.left
+        countdownLabel.width = missionPatchImageView.width
+        countdownLabel.top = missionPatchImageView.bottom + 10
     }
     
     func configure(with launch: Launch) {
         
         nameLabel.text = launch.missionName
         
-        if let firsStage = launch.rocket.firstStage {
-            vehicleNameLabel.text = firsStage.cores.map { $0.coreSerial }.joined(separator: ", ")
+        if let firstCoreBlock = launch.rocket.firstStage?.cores.first?.block {
+            vehicleNameLabel.text = "\(launch.rocket.name) \(launch.rocket.version) Block \(firstCoreBlock)"
+        } else {
+            vehicleNameLabel.text = "\(launch.rocket.name) \(launch.rocket.version)"
         }
         
         if let launchDate = launch.launchDate {
-            launchDateLabel.text = DateFormatter.launchDateFormatter.string(from: launchDate)
+            launchDateLabel.text = (launch.upcoming ? "\(DateFormatter().shortWeekdaySymbols[Calendar.current.component(.weekday, from: launchDate) - 1]), " : "") + DateFormatter.launchDateFormatter.string(from: launchDate)
+            
+            if launch.upcoming {
+                let lol = DateComponentsFormatter()
+                lol.unitsStyle = .full
+                lol.maximumUnitCount = 2
+                countdownLabel.text = lol.string(from: TimePeriod(beginning: Date(), end: launchDate).duration)
+                countdownLabel.isHidden = false
+            }
         }
         
         if let missionPatch = launch.links?.missionPatch, let missionPatchUrl = URL(string: missionPatch) {
             missionPatchImageView.af_setImage(withURL: missionPatchUrl)
+            missionPatchImageView.alpha = 1
+        } else {
+            missionPatchImageView.image = #imageLiteral(resourceName: "launch-placeholder")
+            missionPatchImageView.alpha = 0.7
         }
         
         if let launchSite = launch.site?.siteName {
@@ -193,11 +234,60 @@ class LaunchOverviewCell: UITableViewCell {
         return tagView
     }
     
+//    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+////        super.setHighlighted(highlighted, animated: animated)
+//
+//        if highlighted && animated {
+//            let shrinkAnimation = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
+//            shrinkAnimation?.toValue = NSValue(cgSize: CGSize(width: 0.95, height: 0.95))
+//            shrinkAnimation?.duration = 0.1
+//            layer.pop_add(shrinkAnimation, forKey: "shrink")
+//        } else if animated {
+//            let releaseAnimation = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+//            releaseAnimation?.toValue = NSValue(cgSize: CGSize(width: 1.0, height: 1.0))
+//            releaseAnimation?.velocity = NSValue(cgPoint: CGPoint(x: 2, y: 2))
+//            releaseAnimation?.springBounciness = 20
+//            layer.pop_add(releaseAnimation, forKey: "shrink")
+//        }
+//    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        shrink()
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        expand()
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        expand()
+    }
+    
+    func shrink() {
+        let shrinkAnimation = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
+        shrinkAnimation?.toValue = NSValue(cgSize: CGSize(width: 0.95, height: 0.95))
+        shrinkAnimation?.duration = 0.1
+        layer.pop_add(shrinkAnimation, forKey: "shrink")
+    }
+    
+    func expand() {
+        let releaseAnimation = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+        releaseAnimation?.toValue = NSValue(cgSize: CGSize(width: 1.0, height: 1.0))
+        releaseAnimation?.velocity = NSValue(cgPoint: CGPoint(x: 1, y: 1))
+        releaseAnimation?.springBounciness = 20
+        layer.pop_add(releaseAnimation, forKey: "shrink")
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
         launchDateLabel.text = nil
         launchSiteLabel.text = nil
+        
+        countdownLabel.isHidden = true
         
         missionPatchImageView.image = nil
         missionPatchImageView.af_cancelImageRequest()

@@ -18,7 +18,7 @@ extension DateFormatter {
     }
     
     static let launchDateFormatter = DateFormatter().setUp {
-        $0.dateStyle = .short
+        $0.dateStyle = .medium
         $0.timeStyle = .short
     }
 }

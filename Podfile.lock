@@ -16,6 +16,7 @@ PODS:
   - Moya/RxSwift (11.0.2):
     - Moya/Core
     - RxSwift (~> 4.0)
+  - pop (1.0.10)
   - Result (3.2.4)
   - RSSwizzle (0.1.0)
   - RxCocoa (4.2.0):
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - Fabric (= 1.7.7)
   - JLRoutes (= 2.1)
   - Moya/RxSwift (= 11.0.2)
+  - pop (= 1.0.10)
   - RSSwizzle (= 0.1.0)
   - RxCocoa (= 4.2.0)
   - RxSwift (= 4.2.0)
@@ -58,6 +60,7 @@ SPEC REPOS:
     - Fabric
     - JLRoutes
     - Moya
+    - pop
     - Result
     - RSSwizzle
     - RxCocoa
@@ -77,6 +80,7 @@ SPEC CHECKSUMS:
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
   JLRoutes: d755245322b94227662ea3e43492fdca94e05c5b
   Moya: a725035953bc1c0eb1be505ab903984501d82440
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RSSwizzle: d561958f595028bfcef98c7d55c318b3878a61c6
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
@@ -87,6 +91,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: bc36bf7529e998a8d51e6209e138386268210594
+PODFILE CHECKSUM: f96ae1595848834697dbd01554ba4f1b7a423dcf
 
 COCOAPODS: 1.5.3

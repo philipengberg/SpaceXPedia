@@ -32,6 +32,8 @@ struct Style {
             
             UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
             
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white]
+            
             applyDefaultNavigationBarAppearance(to: UINavigationBar.appearance())
             
 //            UITabBar.appearance().tintColor = .primaryColor

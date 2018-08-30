@@ -15,8 +15,14 @@ class LaunchesView: UIView {
         $0.keyboardDismissMode = .onDrag
     }
     
+    let refreshControl = UIRefreshControl().setUp {
+        $0.tintColor = .white
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        
+        tableView.refreshControl = refreshControl
         
         addSubviews([tableView])
         

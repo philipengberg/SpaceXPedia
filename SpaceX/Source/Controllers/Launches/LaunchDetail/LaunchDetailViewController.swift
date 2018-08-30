@@ -87,6 +87,8 @@ extension LaunchDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueCell(LaunchVideoCell.self, indexPath: indexPath)
             if let videoId = viewModel.object.value?.links?.youTubeVideoId {
                 cell.configure(with: videoId)
+            } else {
+                cell.showEmpty()
             }
             return cell
             
