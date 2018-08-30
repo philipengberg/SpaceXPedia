@@ -20,15 +20,21 @@ class RoadsterViewController: UIViewController {
     private let viewModel: RoadsterViewModel
     private let bag = DisposeBag()
     
-    private let noDecimalsNumberFormatter = NumberFormatter().setUp {
-        $0.numberStyle = .decimal
-        $0.maximumFractionDigits = 0
+    private let normalStyle = SwiftRichString.Style {
+        $0.font = UIFont.italicSystemFont(ofSize: 18)
+        $0.paragraph = NSMutableParagraphStyle().setUp {
+            $0.minimumLineHeight = 30
+            $0.alignment = .center
+        }
+        $0.color = #colorLiteral(red: 0.337254902, green: 0.431372549, blue: 0.5843137255, alpha: 1)
     }
     
-    private let decimalsNumberFormatter = NumberFormatter().setUp {
-        $0.numberStyle = .decimal
-        $0.maximumFractionDigits = 2
+    private let highlihgtStyle = SwiftRichString.Style {
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        $0.traitVariants = .italic
     }
+    
+    private lazy var group = StyleGroup(base: normalStyle, ["highlight": highlihgtStyle])
 
     // MARK: - Inits
 
@@ -58,35 +64,8 @@ class RoadsterViewController: UIViewController {
         
         viewModel.loadAction.executing.bind(to: _view.spinner.rx.isAnimating).disposed(by: bag)
         
-        viewModel.object.asObservable().unwrap().subscribe(onNext: { [weak self] (roadster) in
-            guard let s = self else { return }
-            
-            let normalStyle = SwiftRichString.Style {
-                $0.font = UIFont.italicSystemFont(ofSize: 18)
-                $0.paragraph = NSMutableParagraphStyle().setUp {
-                    $0.minimumLineHeight = 30
-                    $0.alignment = .center
-                }
-                $0.color = #colorLiteral(red: 0.337254902, green: 0.431372549, blue: 0.5843137255, alpha: 1)
-            }
-            
-            let highlihgtStyle = SwiftRichString.Style {
-                $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-                $0.traitVariants = .italic
-            }
-            
-            let group = StyleGroup(base: normalStyle, ["highlight": highlihgtStyle])
-            
-            let text = "Elon’s 🚘 is currently <highlight>{earth_distance} km</highlight> away from 🌍 moving at about <highlight>{speed} km/h</highlight> 💨 It orbits the ☀️ every <highlight>{period} days</highlight> at a distance between <highlight>{periapsis}</highlight> and <highlight>{apoapsis} AUs</highlight> 📡 It weighs <highlight>{weight} kg</highlight> and has now spent <highlight>{duration} days</highlight> in space ✨"
-                .replacingOccurrences(of: "{earth_distance}", with: s.noDecimalsNumberFormatter.string(from: roadster.earthDistanceKm as NSNumber)!)
-                .replacingOccurrences(of: "{speed}", with: s.noDecimalsNumberFormatter.string(from: roadster.speed.kmh as NSNumber)!)
-                .replacingOccurrences(of: "{period}", with: s.noDecimalsNumberFormatter.string(from: roadster.periodDays as NSNumber)!)
-                .replacingOccurrences(of: "{periapsis}", with: s.decimalsNumberFormatter.string(from: roadster.periapsisAu as NSNumber)!)
-                .replacingOccurrences(of: "{apoapsis}", with: s.decimalsNumberFormatter.string(from: roadster.apoapsisAu as NSNumber)!)
-                .replacingOccurrences(of: "{weight}", with: s.noDecimalsNumberFormatter.string(from: roadster.launchMass.kilos as NSNumber)!)
-                .replacingOccurrences(of: "{duration}", with: s.noDecimalsNumberFormatter.string(from: roadster.launchDate.daysAgo as NSNumber)!)
-            
-            self?._view.textLabel.attributedText = text.set(style: group)
+        viewModel.roadsterDescription.asObservable().unwrap().subscribe(onNext: { [weak self] (description) in
+            self?.updateView(with: description)
         }).disposed(by: bag)
         
         viewModel.reloadData()
@@ -95,8 +74,17 @@ class RoadsterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        navigationController?.setNavigationBarHidden(true, animated: animated)
         Style.appearance.applyTranslucentNavigationBarAppearance(to: navigationController?.navigationBar)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.trackRoadsterShown()
+    }
+    
+    private func updateView(with text: String) {
+        _view.textLabel.attributedText = text.set(style: group)
     }
 
     deinit {
