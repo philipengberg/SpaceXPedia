@@ -63,6 +63,10 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
             sections.append(contentsOf: secondStage.payloads.map { generatePayloadSection(from: $0) })
         }
         
+        if let fairings = generateFairingsSection(from: launch.rocket) {
+            sections.append(fairings)
+        }
+        
         if let links = generateLinksSection(from: launch) {
             sections.append(links)
         }
@@ -185,6 +189,20 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
         }
         
         return InfoSection(sectionName: "Payload: \(payload.payloadId)", properties: props)
+    }
+    
+    private func generateFairingsSection(from rocket: Rocket) -> InfoSection? {
+        guard let fairings = rocket.fairings else { return nil }
+        
+        var props = [PropertyWithDetail(propertyName: "Reused", propertyValue: "\(fairings.reused ? "Yes" : "No")"),
+                     PropertyWithDetail(propertyName: "Recovery attempted", propertyValue: "\(fairings.recoveryAttempt ? "Yes" : "No")"),
+                     PropertyWithDetail(propertyName: "Recovery success", propertyValue: "\(fairings.recoverySuccess ? "Yes" : "No")")]
+        
+        if let vessel = fairings.recoveryVessel {
+            props.append(PropertyWithDetail(propertyName: "Recovery vessel", propertyValue: vessel))
+        }
+        
+        return InfoSection(sectionName: "Fairings", properties: props)
     }
     
     private func generateLinksSection(from launch: Launch) -> InfoSection? {

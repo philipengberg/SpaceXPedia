@@ -44,6 +44,7 @@ struct Rocket: Serialization {
     let landingLegs: LandingLegs?
     let firstStage: FirstStage?
     let secondStage: SecondStage?
+    let fairings: Fairings?
     
     init?(json: JSON) {
         self.id = json["rocket_id"].string ?? json["id"].stringValue
@@ -61,6 +62,7 @@ struct Rocket: Serialization {
         self.landingLegs = LandingLegs(json: json["landing_legs"])
         self.firstStage = FirstStage(json: json["first_stage"])
         self.secondStage = SecondStage(json: json["second_stage"])
+        self.fairings = Fairings(json: json["fairings"])
     }
 }
 
@@ -163,6 +165,24 @@ extension Rocket {
             self.payloads = json["payloads"].arrayValue.compactMap { Payload(json: $0) }
         }
     }
+}
+
+extension Rocket {
+    
+    struct Fairings: Serialization {
+        let reused: Bool
+        let recoveryAttempt: Bool
+        let recoverySuccess: Bool
+        let recoveryVessel: String?
+        
+        init?(json: JSON) {
+            self.reused = json["reused"].boolValue
+            self.recoveryAttempt = json["recovery_attempt"].boolValue
+            self.recoverySuccess = json["recovered"].boolValue
+            self.recoveryVessel = json["ship"].string
+        }
+    }
+    
 }
 
 extension Rocket {
