@@ -5,7 +5,7 @@ target 'SpaceX' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Reveal-SDK', '17'
+#  pod 'Reveal-SDK', '17'
 
   # Analytics
   pod 'Fabric', '1.7.7'
