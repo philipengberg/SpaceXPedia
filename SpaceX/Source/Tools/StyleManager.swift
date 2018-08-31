@@ -13,10 +13,11 @@ struct Style {
     struct appearance {
         
         static func applyTranslucentNavigationBarAppearance(to navigationBar: UINavigationBar?) {
+            navigationBar?.setBackgroundImage(UIImage(), for: .default)
             navigationBar?.backgroundColor = .clear
             navigationBar?.barTintColor = .clear
             navigationBar?.shadowImage = UIImage()
-            navigationBar?.isTranslucent = false
+            navigationBar?.isTranslucent = true
         }
         
         static func applyDefaultNavigationBarAppearance(to navigationBar: UINavigationBar?) {

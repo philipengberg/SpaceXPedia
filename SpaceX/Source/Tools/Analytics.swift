@@ -31,4 +31,8 @@ struct Analytics {
         Amplitude.instance().logEvent("Rocket detail shown", withEventProperties: ["Rocket name": rocket.name])
     }
     
+    static func trackRoadsterShown() {
+        Amplitude.instance().logEvent("Roadster shown")
+    }
+    
 }

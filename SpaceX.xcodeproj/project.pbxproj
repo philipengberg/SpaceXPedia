@@ -57,6 +57,10 @@
 		D496E28C212DA6E400F5CEAA /* LaunchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496E289212DA6E400F5CEAA /* LaunchDetailViewModel.swift */; };
 		D496E28E212DA81F00F5CEAA /* LaunchVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */; };
 		D4F948882137EE4900873998 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F948872137EE4900873998 /* Analytics.swift */; };
+		D4F9488D2138177400873998 /* RoadsterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F9488A2138177400873998 /* RoadsterViewController.swift */; };
+		D4F9488E2138177400873998 /* RoadsterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F9488B2138177400873998 /* RoadsterView.swift */; };
+		D4F9488F2138177400873998 /* RoadsterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F9488C2138177400873998 /* RoadsterViewModel.swift */; };
+		D4F948912138178B00873998 /* Roadster.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F948902138178B00873998 /* Roadster.swift */; };
 		DFFC75BBCBC58F9EC7956C26 /* Pods_SpaceX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B159942623C91538977E353 /* Pods_SpaceX.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +143,10 @@
 		D496E289212DA6E400F5CEAA /* LaunchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailViewModel.swift; sourceTree = "<group>"; };
 		D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVideoCell.swift; sourceTree = "<group>"; };
 		D4F948872137EE4900873998 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		D4F9488A2138177400873998 /* RoadsterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsterViewController.swift; sourceTree = "<group>"; };
+		D4F9488B2138177400873998 /* RoadsterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsterView.swift; sourceTree = "<group>"; };
+		D4F9488C2138177400873998 /* RoadsterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsterViewModel.swift; sourceTree = "<group>"; };
+		D4F948902138178B00873998 /* Roadster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roadster.swift; sourceTree = "<group>"; };
 		EB0EE27A97D057DC46F20255 /* Pods_SpaceXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F23AD974B57E0B6B617FB19E /* Pods-SpaceXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceXUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpaceXUITests/Pods-SpaceXUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,6 +257,7 @@
 		D415516E212B0531008848DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4F948892138176900873998 /* Roadster */,
 				D41CA164212C917200772581 /* Launches */,
 				D4155178212B0834008848DE /* Rockets */,
 			);
@@ -297,6 +306,7 @@
 				D4155184212B0A4F008848DE /* Rocket.swift */,
 				D4155186212B227C008848DE /* Measurements.swift */,
 				D48D0527212F3B4000028A84 /* LaunchSite.swift */,
+				D4F948902138178B00873998 /* Roadster.swift */,
 				D415517D212B09B2008848DE /* Utility */,
 			);
 			path = Models;
@@ -393,6 +403,16 @@
 				D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */,
 			);
 			path = LaunchDetail;
+			sourceTree = "<group>";
+		};
+		D4F948892138176900873998 /* Roadster */ = {
+			isa = PBXGroup;
+			children = (
+				D4F9488A2138177400873998 /* RoadsterViewController.swift */,
+				D4F9488C2138177400873998 /* RoadsterViewModel.swift */,
+				D4F9488B2138177400873998 /* RoadsterView.swift */,
+			);
+			path = Roadster;
 			sourceTree = "<group>";
 		};
 		FC7167A9CCCE287D88EC11A9 /* Pods */ = {
@@ -594,6 +614,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftRichString/SwiftRichString.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
@@ -613,6 +634,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRichString.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
@@ -671,10 +693,12 @@
 				D48D0525212F3A4400028A84 /* LaunchSiteView.swift in Sources */,
 				D48E2665212BE843008F6785 /* RocketImageCell.swift in Sources */,
 				D415519E212B3FDB008848DE /* RocketDetailViewController.swift in Sources */,
+				D4F9488D2138177400873998 /* RoadsterViewController.swift in Sources */,
 				D48D0526212F3A4400028A84 /* LaunchSiteViewModel.swift in Sources */,
 				D4155187212B227C008848DE /* Measurements.swift in Sources */,
 				D4F948882137EE4900873998 /* Analytics.swift in Sources */,
 				D48D052A212F425800028A84 /* MapCell.swift in Sources */,
+				D4F948912138178B00873998 /* Roadster.swift in Sources */,
 				D4155193212B373A008848DE /* LoadingCell.swift in Sources */,
 				D4155191212B36C6008848DE /* UITableView+Reusable.swift in Sources */,
 				D496E28B212DA6E400F5CEAA /* LaunchDetailView.swift in Sources */,
@@ -683,11 +707,13 @@
 				D48D0524212F3A4400028A84 /* LaunchSiteViewController.swift in Sources */,
 				D41551A6212B446D008848DE /* Array+Utility.swift in Sources */,
 				D41CA169212C918000772581 /* LaunchesView.swift in Sources */,
+				D4F9488F2138177400873998 /* RoadsterViewModel.swift in Sources */,
 				D4155140212B02C9008848DE /* AppDelegate.swift in Sources */,
 				D4155181212B09FA008848DE /* Action+API.swift in Sources */,
 				D48D0528212F3B4000028A84 /* LaunchSite.swift in Sources */,
 				D41CA170212C9E9500772581 /* LaunchOverviewCell.swift in Sources */,
 				D41CA16C212C919600772581 /* Launch.swift in Sources */,
+				D4F9488E2138177400873998 /* RoadsterView.swift in Sources */,
 				D41CA16A212C918000772581 /* LaunchesViewModel.swift in Sources */,
 				D415517B212B0912008848DE /* UIView+Utility.swift in Sources */,
 				D41551AA212B46D0008848DE /* StyleManager.swift in Sources */,
@@ -857,13 +883,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = SpaceX/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -878,13 +901,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = SpaceX/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -902,11 +922,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -924,11 +940,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -945,11 +957,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -966,11 +974,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

@@ -19,12 +19,16 @@ class LaunchesView: UIView {
         $0.tintColor = .white
     }
     
+    let segmentedControl = UISegmentedControl(items: ["Past", "Upcoming"]).setUp {
+        $0.tintColor = .white
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         tableView.refreshControl = refreshControl
         
-        addSubviews([tableView])
+        addSubviews([segmentedControl, tableView])
         
         backgroundColor = #colorLiteral(red: 0.03137254902, green: 0.3254901961, blue: 0.5254901961, alpha: 1)
         
@@ -37,8 +41,15 @@ class LaunchesView: UIView {
     
     override func updateConstraints() {
         
+        segmentedControl.snp.updateConstraints { (make) in
+            make.top.equalToSuperview().offset(5)
+            make.width.equalToSuperview().offset(-30)
+            make.centerX.equalToSuperview()
+        }
+        
         tableView.snp.updateConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.top.equalTo(segmentedControl.snp.bottom).offset(10)
+            make.left.bottom.right.equalToSuperview()
         }
         
         super.updateConstraints()
