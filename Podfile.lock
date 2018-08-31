@@ -5,6 +5,7 @@ PODS:
   - Alamofire (4.7.2)
   - AlamofireImage (3.3.1):
     - Alamofire (~> 4.5)
+  - Amplitude-iOS (4.3.1)
   - Crashlytics (3.10.2):
     - Fabric (~> 1.7.7)
   - DateToolsSwift (4.0.0)
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - Action (= 3.6.0)
   - Alamofire (= 4.7.2)
   - AlamofireImage (= 3.3.1)
+  - Amplitude-iOS
   - Crashlytics (= 3.10.2)
   - DateToolsSwift (= 4.0.0)
   - Fabric (= 1.7.7)
@@ -55,6 +57,7 @@ SPEC REPOS:
     - Action
     - Alamofire
     - AlamofireImage
+    - Amplitude-iOS
     - Crashlytics
     - DateToolsSwift
     - Fabric
@@ -75,6 +78,7 @@ SPEC CHECKSUMS:
   Action: 3d9486d3da02b572b0a034b6c49ac4c3fbcc8b63
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
+  Amplitude-iOS: df355e2be58972041acde9576a2ae97c217bf941
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   DateToolsSwift: 875d97ff9e3a5d54abdd67a269b3f51c757b71ab
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
@@ -91,6 +95,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: f96ae1595848834697dbd01554ba4f1b7a423dcf
+PODFILE CHECKSUM: 165c0c8fc9da715fb35eac1b3bb008975ecd69fc
 
 COCOAPODS: 1.5.3

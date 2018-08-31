@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Style.appearance.setUpAppearance()
         
+        Analytics.initialize()
+        
         return true
     }
 
