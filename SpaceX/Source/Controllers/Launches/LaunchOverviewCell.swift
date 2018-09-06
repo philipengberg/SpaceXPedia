@@ -105,7 +105,7 @@ class LaunchOverviewCell: UITableViewCell {
         
         launchDateLabel.left = dateIconImageView.right + 4
         launchDateLabel.sizeToFit()
-        launchDateLabel.width = disclosureIndicatorImageView.left - launchDateLabel.left - 5
+        launchDateLabel.width = nameLabel.right - launchDateLabel.left - 5
         launchDateLabel.centerY = dateIconImageView.centerY
         
         launchSiteIconImageView.size = CGSize(width: 14, height: 14)
@@ -160,16 +160,14 @@ class LaunchOverviewCell: UITableViewCell {
             vehicleNameLabel.text = "\(launch.rocket.name) \(launch.rocket.version)"
         }
         
-        if let launchDate = launch.launchDate {
-            launchDateLabel.text = (launch.upcoming ? "\(DateFormatter().shortWeekdaySymbols[Calendar.current.component(.weekday, from: launchDate) - 1]), " : "") + DateFormatter.launchDateFormatter.string(from: launchDate)
-            
-            if launch.upcoming {
-                let lol = DateComponentsFormatter()
-                lol.unitsStyle = .full
-                lol.maximumUnitCount = 2
-                countdownLabel.text = lol.string(from: TimePeriod(beginning: Date(), end: launchDate).duration)
-                countdownLabel.isHidden = false
-            }
+        launchDateLabel.text = launch.launchDate.displayName
+        
+        if launch.launchDate.isUpcoming {
+            let dateComponentFormatter = DateComponentsFormatter()
+            dateComponentFormatter.unitsStyle = .full
+            dateComponentFormatter.maximumUnitCount = 2
+            countdownLabel.text = dateComponentFormatter.string(from: TimePeriod(beginning: Date(), end: launch.launchDate.date).duration)
+            countdownLabel.isHidden = false
         }
         
         if let missionPatch = launch.links?.missionPatch, let missionPatchUrl = URL(string: missionPatch) {

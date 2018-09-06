@@ -39,7 +39,7 @@ class LaunchesViewModel: ValuesViewModel<Launch> {
             return dataSource.filter { $0.missionName.lowercased().contains(searchText.lowercased()) }
         }.bind(to: filteredLaunches).disposed(by: bag)
         
-        object.asObservable().map { $0.filter { !$0.upcoming } }.map { $0.reversed() }.bind(to: pastLaunches).disposed(by: bag)
-        object.asObservable().map { $0.filter {  $0.upcoming } }.bind(to: futureLaunches).disposed(by: bag)
+        object.asObservable().map { $0.filter { !$0.launchDate.isUpcoming } }.map { $0.reversed() }.bind(to: pastLaunches).disposed(by: bag)
+        object.asObservable().map { $0.filter {  $0.launchDate.isUpcoming } }.bind(to: futureLaunches).disposed(by: bag)
     }
 }

@@ -21,4 +21,16 @@ extension DateFormatter {
         $0.dateStyle = .medium
         $0.timeStyle = .short
     }
+    
+    static let launchDateNETDayFormatter = DateFormatter().setUp {
+        $0.dateStyle = .medium
+    }
+    
+    static let launchDateNETMonthFormatter = DateFormatter().setUp {
+        $0.setLocalizedDateFormatFromTemplate("MMM yyyy")
+    }
+    
+    static let launchDateNETYearFormatter = DateFormatter().setUp {
+        $0.setLocalizedDateFormatFromTemplate("yyyy")
+    }
 }
