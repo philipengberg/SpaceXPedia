@@ -45,6 +45,9 @@
 		D41CA16C212C919600772581 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA16B212C919600772581 /* Launch.swift */; };
 		D41CA16E212C948A00772581 /* DateFormatter+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA16D212C948A00772581 /* DateFormatter+Utility.swift */; };
 		D41CA170212C9E9500772581 /* LaunchOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA16F212C9E9500772581 /* LaunchOverviewCell.swift */; };
+		D45004822139893C002E293F /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450047F2139893C002E293F /* StatsViewController.swift */; };
+		D45004832139893C002E293F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45004802139893C002E293F /* StatsView.swift */; };
+		D45004842139893C002E293F /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45004812139893C002E293F /* StatsViewModel.swift */; };
 		D48D051F212F297700028A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48D051E212F297700028A84 /* Assets.xcassets */; };
 		D48D0524212F3A4400028A84 /* LaunchSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D0521212F3A4400028A84 /* LaunchSiteViewController.swift */; };
 		D48D0525212F3A4400028A84 /* LaunchSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D0522212F3A4400028A84 /* LaunchSiteView.swift */; };
@@ -131,6 +134,9 @@
 		D41CA16B212C919600772581 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		D41CA16D212C948A00772581 /* DateFormatter+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Utility.swift"; sourceTree = "<group>"; };
 		D41CA16F212C9E9500772581 /* LaunchOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOverviewCell.swift; sourceTree = "<group>"; };
+		D450047F2139893C002E293F /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		D45004802139893C002E293F /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		D45004812139893C002E293F /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		D48D051E212F297700028A84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48D0521212F3A4400028A84 /* LaunchSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSiteViewController.swift; sourceTree = "<group>"; };
 		D48D0522212F3A4400028A84 /* LaunchSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSiteView.swift; sourceTree = "<group>"; };
@@ -257,6 +263,7 @@
 		D415516E212B0531008848DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D450047E21398930002E293F /* Stats */,
 				D4F948892138176900873998 /* Roadster */,
 				D41CA164212C917200772581 /* Launches */,
 				D4155178212B0834008848DE /* Rockets */,
@@ -381,6 +388,16 @@
 				D48D0520212F3A3300028A84 /* LaunchSite */,
 			);
 			path = Launches;
+			sourceTree = "<group>";
+		};
+		D450047E21398930002E293F /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				D450047F2139893C002E293F /* StatsViewController.swift */,
+				D45004812139893C002E293F /* StatsViewModel.swift */,
+				D45004802139893C002E293F /* StatsView.swift */,
+			);
+			path = Stats;
 			sourceTree = "<group>";
 		};
 		D48D0520212F3A3300028A84 /* LaunchSite */ = {
@@ -685,6 +702,7 @@
 				D415517F212B09BC008848DE /* ValueViewModel.swift in Sources */,
 				D415519F212B3FDB008848DE /* RocketDetailView.swift in Sources */,
 				D496E28E212DA81F00F5CEAA /* LaunchVideoCell.swift in Sources */,
+				D45004832139893C002E293F /* StatsView.swift in Sources */,
 				D415518F212B349B008848DE /* Setup.swift in Sources */,
 				D4155185212B0A4F008848DE /* Rocket.swift in Sources */,
 				D4155175212B082F008848DE /* RocketsViewController.swift in Sources */,
@@ -694,6 +712,7 @@
 				D48E2665212BE843008F6785 /* RocketImageCell.swift in Sources */,
 				D415519E212B3FDB008848DE /* RocketDetailViewController.swift in Sources */,
 				D4F9488D2138177400873998 /* RoadsterViewController.swift in Sources */,
+				D45004822139893C002E293F /* StatsViewController.swift in Sources */,
 				D48D0526212F3A4400028A84 /* LaunchSiteViewModel.swift in Sources */,
 				D4155187212B227C008848DE /* Measurements.swift in Sources */,
 				D4F948882137EE4900873998 /* Analytics.swift in Sources */,
@@ -713,6 +732,7 @@
 				D48D0528212F3B4000028A84 /* LaunchSite.swift in Sources */,
 				D41CA170212C9E9500772581 /* LaunchOverviewCell.swift in Sources */,
 				D41CA16C212C919600772581 /* Launch.swift in Sources */,
+				D45004842139893C002E293F /* StatsViewModel.swift in Sources */,
 				D4F9488E2138177400873998 /* RoadsterView.swift in Sources */,
 				D41CA16A212C918000772581 /* LaunchesViewModel.swift in Sources */,
 				D415517B212B0912008848DE /* UIView+Utility.swift in Sources */,
@@ -886,7 +906,10 @@
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = SpaceX/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -904,7 +927,10 @@
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = SpaceX/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -922,7 +948,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -940,7 +970,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -957,7 +991,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -974,7 +1012,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
