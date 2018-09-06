@@ -29,6 +29,7 @@ PODS:
     - RxSwift (~> 4.0)
   - SnapKit (4.0.0)
   - SwiftLint (0.25.1)
+  - SwiftRichString (2.0.1)
   - SwiftyJSON (4.1.0)
   - youtube-ios-player-helper (0.1.6)
 
@@ -36,7 +37,7 @@ DEPENDENCIES:
   - Action (= 3.6.0)
   - Alamofire (= 4.7.2)
   - AlamofireImage (= 3.3.1)
-  - Amplitude-iOS
+  - Amplitude-iOS (= 4.3.1)
   - Crashlytics (= 3.10.2)
   - DateToolsSwift (= 4.0.0)
   - Fabric (= 1.7.7)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - RxSwiftExt (= 3.2.0)
   - SnapKit (= 4.0.0)
   - SwiftLint (= 0.25.1)
+  - SwiftRichString (= 2.0.1)
   - SwiftyJSON (= 4.1.0)
   - youtube-ios-player-helper (= 0.1.6)
 
@@ -71,6 +73,7 @@ SPEC REPOS:
     - RxSwiftExt
     - SnapKit
     - SwiftLint
+    - SwiftRichString
     - SwiftyJSON
     - youtube-ios-player-helper
 
@@ -92,9 +95,10 @@ SPEC CHECKSUMS:
   RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
+  SwiftRichString: 3b29b5f2eb0eb244497532f2fd2ec26318eae584
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 165c0c8fc9da715fb35eac1b3bb008975ecd69fc
+PODFILE CHECKSUM: a8d6641c8596faabb63caa895fb057b78b37d0a3
 
 COCOAPODS: 1.5.3

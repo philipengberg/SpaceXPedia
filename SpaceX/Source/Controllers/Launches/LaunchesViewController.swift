@@ -42,6 +42,12 @@ class LaunchesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let lol = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-starman").withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
+        lol.rx.tap.subscribe(onNext: { [weak self] (_) in
+            self?.present(UINavigationController(rootViewController: RoadsterViewController(viewModel: RoadsterViewModel(api: SpaceXAPI))), animated: true, completion: nil)
+        }).disposed(by: bag)
+        navigationItem.leftBarButtonItem = lol
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.backgroundColor = #colorLiteral(red: 0.03137254902, green: 0.3254901961, blue: 0.5254901961, alpha: 1)
@@ -50,11 +56,11 @@ class LaunchesViewController: UIViewController {
         searchController.searchBar.placeholder = "Search Launches"
         searchController.searchBar.searchBarStyle = .minimal
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.scopeButtonTitles = ["Past", "Upcoming"]
-        searchController.searchBar.showsScopeBar = true
-        searchController.searchBar.delegate = self
         navigationItem.titleView = searchController.searchBar
         definesPresentationContext = true
+        
+        _view.segmentedControl.rx.selectedSegmentIndex.asObservable().map { LaunchesViewModel.Scope(rawValue: $0) }.unwrap().bind(to: viewModel.scope).disposed(by: bag)
+        _view.segmentedControl.selectedSegmentIndex = 0
         
         _view.tableView.registerCell(LaunchOverviewCell.self)
         
@@ -124,19 +130,6 @@ extension LaunchesViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         viewModel.searchText.value = searchController.searchBar.text ?? ""
-    }
-}
-
-extension LaunchesViewController: UISearchBarDelegate {
-    
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        searchController.searchBar.showsScopeBar = true
-//    }
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        if let scope = LaunchesViewModel.Scope(rawValue: selectedScope) {
-            viewModel.scope.value = scope
-        }
     }
 }
 
