@@ -26,6 +26,8 @@ platform :ios do
   #--------------------------- App Store -------------------------#
 
   private_lane :app_store do |options|
+
+  	match(type: "development", app_identifier: "#{ENV['APP_IDENTIFIER']}.#{scheme.downcase}")
     
     if options[:include_meta]
       upload_metadata

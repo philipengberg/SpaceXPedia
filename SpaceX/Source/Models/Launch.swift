@@ -14,11 +14,10 @@ struct Launch: Serialization {
     let flightNumber: Int
     let missionName: String
     let details: String?
-    let launchDate: Date?
+    let launchDate: LaunchDate
     let rocket: Rocket
     let reuse: Reuse
     let launchSuccess: Bool?
-    let upcoming: Bool
     let staticFireDate: Date?
     let site: Site?
     let links: Links?
@@ -26,17 +25,58 @@ struct Launch: Serialization {
     init?(json: JSON) {
         guard let flightNumber = json["flight_number"].int else { return nil }
         guard let rocket = Rocket(json: json["rocket"]) else { return nil }
+        guard let launchDate = LaunchDate(json: json) else { return nil }
         self.flightNumber = flightNumber
         self.missionName = json["mission_name"].stringValue
         self.details = json["details"].string
-        self.launchDate = DateFormatter.ISO8601.date(from: json["launch_date_utc"].stringValue)
+        self.launchDate = launchDate
         self.rocket = rocket
         self.reuse = Reuse(json: json["reuse"]) ?? .empty
         self.launchSuccess = json["launch_success"].bool
-        self.upcoming = json["upcoming"].boolValue
         self.staticFireDate = DateFormatter.ISO8601.date(from: json["static_fire_date_utc"].stringValue)
         self.site = Site(json: json["launch_site"])
         self.links = Links(json: json["links"])
+    }
+    
+}
+
+extension Launch {
+    
+    struct LaunchDate: Serialization {
+        
+        enum TentativePrecision: String {
+            case hour, day, month, year
+        }
+        
+        let date: Date
+        let isTentative: Bool
+        let tentativeMaxPrecision: TentativePrecision
+        let isUpcoming: Bool
+        
+        init?(json: JSON) {
+            guard let date = DateFormatter.ISO8601.date(from: json["launch_date_utc"].stringValue) else { return nil }
+            self.date = date
+            self.isTentative = json["is_tentative"].boolValue
+            self.tentativeMaxPrecision = TentativePrecision(rawValue: json["tentative_max_precision"].stringValue) ?? .hour
+            self.isUpcoming = json["upcoming"].boolValue
+        }
+        
+        var displayName: String {
+            if isUpcoming {
+                if isTentative {
+                    switch tentativeMaxPrecision {
+                    case .hour:  return "NET " + DateFormatter.launchDateFormatter.string(from: date)
+                    case .day:   return "NET " + DateFormatter.launchDateNETDayFormatter.string(from: date)
+                    case .month: return "NET " + DateFormatter.launchDateNETMonthFormatter.string(from: date)
+                    case .year:  return "NET " + DateFormatter.launchDateNETYearFormatter.string(from: date)
+                    }
+                } else {
+                    return DateFormatter().shortWeekdaySymbols[Calendar.current.component(.weekday, from: date) - 1] + ", " + DateFormatter.launchDateFormatter.string(from: date)
+                }
+            } else {
+                return DateFormatter.launchDateFormatter.string(from: date)
+            }
+        }
     }
     
 }

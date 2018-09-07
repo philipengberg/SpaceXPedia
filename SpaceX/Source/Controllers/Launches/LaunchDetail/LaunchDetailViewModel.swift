@@ -77,7 +77,7 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
             props.append(PropertyWithDetail(propertyName: "Details", propertyValue: details, longValueText: true))
         }
         
-        props.append(PropertyWithDetail(propertyName: "Launch date", propertyValue: DateFormatter.launchDateFormatter.string(from: launch.launchDate!)))
+        props.append(PropertyWithDetail(propertyName: "Launch date", propertyValue: DateFormatter.launchDateFormatter.string(from: launch.launchDate.date)))
         
         if let launchSuccess = launch.launchSuccess {
             props.append(PropertyWithDetail(propertyName: "Success", propertyValue: "\(launchSuccess ? "Yes" : "No")"))
