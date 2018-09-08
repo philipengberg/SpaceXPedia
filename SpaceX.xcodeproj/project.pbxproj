@@ -56,6 +56,7 @@
 		D496E28B212DA6E400F5CEAA /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496E288212DA6E400F5CEAA /* LaunchDetailView.swift */; };
 		D496E28C212DA6E400F5CEAA /* LaunchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496E289212DA6E400F5CEAA /* LaunchDetailViewModel.swift */; };
 		D496E28E212DA81F00F5CEAA /* LaunchVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */; };
+		D4E8A2A32143DB6B002292C5 /* LaunchOverviewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E8A2A22143DB6B002292C5 /* LaunchOverviewCellViewModel.swift */; };
 		D4F948882137EE4900873998 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F948872137EE4900873998 /* Analytics.swift */; };
 		D4F9488D2138177400873998 /* RoadsterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F9488A2138177400873998 /* RoadsterViewController.swift */; };
 		D4F9488E2138177400873998 /* RoadsterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F9488B2138177400873998 /* RoadsterView.swift */; };
@@ -142,6 +143,7 @@
 		D496E288212DA6E400F5CEAA /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
 		D496E289212DA6E400F5CEAA /* LaunchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailViewModel.swift; sourceTree = "<group>"; };
 		D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVideoCell.swift; sourceTree = "<group>"; };
+		D4E8A2A22143DB6B002292C5 /* LaunchOverviewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOverviewCellViewModel.swift; sourceTree = "<group>"; };
 		D4F948872137EE4900873998 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		D4F9488A2138177400873998 /* RoadsterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsterViewController.swift; sourceTree = "<group>"; };
 		D4F9488B2138177400873998 /* RoadsterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsterView.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				D41CA167212C918000772581 /* LaunchesViewModel.swift */,
 				D41CA166212C918000772581 /* LaunchesView.swift */,
 				D41CA16F212C9E9500772581 /* LaunchOverviewCell.swift */,
+				D4E8A2A22143DB6B002292C5 /* LaunchOverviewCellViewModel.swift */,
 				D496E286212DA6CA00F5CEAA /* LaunchDetail */,
 				D48D0520212F3A3300028A84 /* LaunchSite */,
 			);
@@ -713,6 +716,7 @@
 				D48D0528212F3B4000028A84 /* LaunchSite.swift in Sources */,
 				D41CA170212C9E9500772581 /* LaunchOverviewCell.swift in Sources */,
 				D41CA16C212C919600772581 /* Launch.swift in Sources */,
+				D4E8A2A32143DB6B002292C5 /* LaunchOverviewCellViewModel.swift in Sources */,
 				D4F9488E2138177400873998 /* RoadsterView.swift in Sources */,
 				D41CA16A212C918000772581 /* LaunchesViewModel.swift in Sources */,
 				D415517B212B0912008848DE /* UIView+Utility.swift in Sources */,
@@ -886,7 +890,10 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = SpaceX/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -904,7 +911,10 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = SpaceX/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -922,7 +932,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -940,7 +954,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -957,7 +975,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -974,7 +996,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4PQAC6374;
 				INFOPLIST_FILE = SpaceXUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.SpaceXUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

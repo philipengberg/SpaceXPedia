@@ -98,13 +98,6 @@ class LaunchesViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        searchController.isActive = true
-//        searchController.isActive = false
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -149,7 +142,7 @@ extension LaunchesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(LaunchOverviewCell.self, indexPath: indexPath)
-        cell.configure(with: viewModel.filteredLaunches.value[indexPath.row])
+        cell.configure(with: LaunchOverviewCellViewModel(launch: viewModel.filteredLaunches.value[indexPath.row]))
         cell.selectionStyle = .none
         return cell
     }
