@@ -27,7 +27,7 @@ class LaunchOverviewCellViewModel {
     
     var vehicleName: String {
         if let firstCoreBlock = launch.rocket.firstStage?.cores.first?.block {
-            return "\(launch.rocket.name) \(launch.rocket.version) Block \(firstCoreBlock) \(coreReuseCountText)"
+            return "\(launch.rocket.name) Block \(firstCoreBlock) \(coreReuseCountText)"
         } else {
             return "\(launch.rocket.name) \(launch.rocket.version) \(coreReuseCountText)"
         }

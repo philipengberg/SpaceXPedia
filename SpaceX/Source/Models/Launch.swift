@@ -45,7 +45,7 @@ extension Launch {
     struct LaunchDate: Serialization {
         
         enum TentativePrecision: String {
-            case hour, day, month, year
+            case hour, day, month, quarter, half, year
         }
         
         let date: Date
@@ -65,10 +65,12 @@ extension Launch {
             if isUpcoming {
                 if isTentative {
                     switch tentativeMaxPrecision {
-                    case .hour:  return "NET " + DateFormatter.launchDateFormatter.string(from: date)
-                    case .day:   return "NET " + DateFormatter.launchDateNETDayFormatter.string(from: date)
-                    case .month: return "NET " + DateFormatter.launchDateNETMonthFormatter.string(from: date)
-                    case .year:  return "NET " + DateFormatter.launchDateNETYearFormatter.string(from: date)
+                    case .hour:    return "NET " + DateFormatter.launchDateFormatter.string(from: date)
+                    case .day:     return "NET " + DateFormatter.launchDateNETDayFormatter.string(from: date)
+                    case .month:   return "NET " + DateFormatter.launchDateNETMonthFormatter.string(from: date)
+                    case .quarter: return "NET " + DateFormatter.launchDateNETQuarterFormatter.string(from: date)
+                    case .half:    return "NET " + DateFormatter.launchDateNETYearFormatter.string(from: date)
+                    case .year:    return "NET " + DateFormatter.launchDateNETYearFormatter.string(from: date)
                     }
                 } else {
                     return DateFormatter().shortWeekdaySymbols[Calendar.current.component(.weekday, from: date) - 1] + ", " + DateFormatter.launchDateFormatter.string(from: date)
