@@ -99,9 +99,11 @@ enum SpaceXTarget {
     case pastLaunches
     case futureLaunches
     case allLaunches
-    case launch(id: String)
+    case launch(flightNumber: Int)
     case launchSite(id: String)
     case roadster
+    case ships
+    case ship(shipId: String)
 }
 
 extension SpaceXTarget: TargetType {
@@ -118,7 +120,10 @@ extension SpaceXTarget: TargetType {
     }
     
     var version: String {
-        return "v2"
+        switch self {
+        case .ships, .ship: return "v3"
+        default: return "v2"
+        }
     }
     
     var method: Moya.Method {
@@ -135,9 +140,11 @@ extension SpaceXTarget: TargetType {
         case .pastLaunches:     return "/launches"
         case .futureLaunches:   return "/launches/upcoming"
         case .allLaunches:      return "/launches/all"
-        case .launch(let id):   return "/launcehs/\(id)"
+        case .launch:           return "/launches"
         case .launchSite(let id): return "/launchpads/\(id)"
         case .roadster:         return "/info/roadster"
+        case .ships:            return "/ships"
+        case .ship(let shipId): return "/ships/\(shipId)"
         }
     }
     
@@ -151,6 +158,7 @@ extension SpaceXTarget: TargetType {
     var parameters: [String: Any]? {
         switch self {
         case .pastLaunches: return ["sort": "launch_date_utc", "order": "desc"]
+        case .launch(let flightNumber): return ["flight_number": flightNumber]
         default:
             return nil
         }

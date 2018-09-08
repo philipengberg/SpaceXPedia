@@ -30,23 +30,26 @@ struct PropertyWithDetail {
     }
 }
 
-class LaunchDetailViewModel: ValueViewModel<Launch> {
+class LaunchDetailViewModel: ValuesViewModel<Launch> {
     
     let numberFormatter = NumberFormatter().setUp {
         $0.numberStyle = .decimal
     }
     
+    let ships = Variable<[Ship]>([])
+    
     let sections = Variable<[InfoSection]>([])
 
-    init(launchId: String, launch: Launch?) {
-        super.init(api: SpaceXAPI, target: .launch(id: launchId))
+    init(flightNumber: Int) {
+        super.init(api: SpaceXAPI, target: .launch(flightNumber: flightNumber))
         
-        object.asObservable().unwrap().map { [weak self] (launch) -> [InfoSection]? in
+        dataState.asObservable().take(1).flatMap { _ in SpaceXAPI.request(.ships).filterSuccessfulStatusCodes().mapJSON().mapToModels(Ship.self) }.bind(to: ships).disposed(by: bag)
+        
+        Observable.combineLatest(object.asObservable(), ships.asObservable()).map { [weak self] (launches, ships) -> [InfoSection]? in
             guard let s = self else { return nil }
+            guard let launch = launches.first else { return nil }
             return s.generateAllSections(from: launch)
         }.unwrap().bind(to: sections).disposed(by: bag)
-        
-        self.object.value = launch
     }
     
     private func generateAllSections(from launch: Launch) -> [InfoSection] {
@@ -61,6 +64,10 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
         
         if let secondStage = launch.rocket.secondStage {
             sections.append(contentsOf: secondStage.payloads.map { generatePayloadSection(from: $0) })
+        }
+        
+        if let ships = generateShipsSection(from: launch) {
+            sections.append(ships)
         }
         
         if let links = generateLinksSection(from: launch) {
@@ -185,6 +192,14 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
         }
         
         return InfoSection(sectionName: "Payload: \(payload.payloadId)", properties: props)
+    }
+    
+    private func generateShipsSection(from launch: Launch) -> InfoSection? {
+        let ships = launch.shipIds.compactMap { shipId in self.ships.value.first { $0.shipId == shipId } }
+        let props = ships.map { PropertyWithDetail(propertyName: $0.shipName, propertyValue: $0.shipType, detail: .shipDetail(shipId: $0.shipId)) }
+        
+        guard props.count > 0 else { return nil }
+        return InfoSection(sectionName: "Ships", properties: props)
     }
     
     private func generateLinksSection(from launch: Launch) -> InfoSection? {

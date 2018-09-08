@@ -57,6 +57,10 @@
 		D496E28C212DA6E400F5CEAA /* LaunchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496E289212DA6E400F5CEAA /* LaunchDetailViewModel.swift */; };
 		D496E28E212DA81F00F5CEAA /* LaunchVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */; };
 		D4E8A2A32143DB6B002292C5 /* LaunchOverviewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E8A2A22143DB6B002292C5 /* LaunchOverviewCellViewModel.swift */; };
+		D4E8A2A521444557002292C5 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E8A2A421444557002292C5 /* Ship.swift */; };
+		D4E8A2AB21445197002292C5 /* ShipDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E8A2A821445197002292C5 /* ShipDetailViewController.swift */; };
+		D4E8A2AC21445197002292C5 /* ShipDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E8A2A921445197002292C5 /* ShipDetailView.swift */; };
+		D4E8A2AD21445197002292C5 /* ShipDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E8A2AA21445197002292C5 /* ShipDetailViewModel.swift */; };
 		D4F948882137EE4900873998 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F948872137EE4900873998 /* Analytics.swift */; };
 		D4F9488D2138177400873998 /* RoadsterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F9488A2138177400873998 /* RoadsterViewController.swift */; };
 		D4F9488E2138177400873998 /* RoadsterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F9488B2138177400873998 /* RoadsterView.swift */; };
@@ -144,6 +148,10 @@
 		D496E289212DA6E400F5CEAA /* LaunchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailViewModel.swift; sourceTree = "<group>"; };
 		D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVideoCell.swift; sourceTree = "<group>"; };
 		D4E8A2A22143DB6B002292C5 /* LaunchOverviewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOverviewCellViewModel.swift; sourceTree = "<group>"; };
+		D4E8A2A421444557002292C5 /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
+		D4E8A2A821445197002292C5 /* ShipDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailViewController.swift; sourceTree = "<group>"; };
+		D4E8A2A921445197002292C5 /* ShipDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailView.swift; sourceTree = "<group>"; };
+		D4E8A2AA21445197002292C5 /* ShipDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailViewModel.swift; sourceTree = "<group>"; };
 		D4F948872137EE4900873998 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		D4F9488A2138177400873998 /* RoadsterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsterViewController.swift; sourceTree = "<group>"; };
 		D4F9488B2138177400873998 /* RoadsterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsterView.swift; sourceTree = "<group>"; };
@@ -262,6 +270,7 @@
 				D4F948892138176900873998 /* Roadster */,
 				D41CA164212C917200772581 /* Launches */,
 				D4155178212B0834008848DE /* Rockets */,
+				D4E8A2A62144517D002292C5 /* Ships */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -306,9 +315,10 @@
 			children = (
 				D41CA16B212C919600772581 /* Launch.swift */,
 				D4155184212B0A4F008848DE /* Rocket.swift */,
-				D4155186212B227C008848DE /* Measurements.swift */,
 				D48D0527212F3B4000028A84 /* LaunchSite.swift */,
 				D4F948902138178B00873998 /* Roadster.swift */,
+				D4E8A2A421444557002292C5 /* Ship.swift */,
+				D4155186212B227C008848DE /* Measurements.swift */,
 				D415517D212B09B2008848DE /* Utility */,
 			);
 			path = Models;
@@ -406,6 +416,24 @@
 				D496E28D212DA81F00F5CEAA /* LaunchVideoCell.swift */,
 			);
 			path = LaunchDetail;
+			sourceTree = "<group>";
+		};
+		D4E8A2A62144517D002292C5 /* Ships */ = {
+			isa = PBXGroup;
+			children = (
+				D4E8A2A72144518B002292C5 /* ShipDetail */,
+			);
+			path = Ships;
+			sourceTree = "<group>";
+		};
+		D4E8A2A72144518B002292C5 /* ShipDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D4E8A2A821445197002292C5 /* ShipDetailViewController.swift */,
+				D4E8A2AA21445197002292C5 /* ShipDetailViewModel.swift */,
+				D4E8A2A921445197002292C5 /* ShipDetailView.swift */,
+			);
+			path = ShipDetail;
 			sourceTree = "<group>";
 		};
 		D4F948892138176900873998 /* Roadster */ = {
@@ -677,10 +705,13 @@
 				D4155195212B3820008848DE /* RocketCell.swift in Sources */,
 				D4155199212B3EA0008848DE /* UIColor+Utility.swift in Sources */,
 				D496E28C212DA6E400F5CEAA /* LaunchDetailViewModel.swift in Sources */,
+				D4E8A2AD21445197002292C5 /* ShipDetailViewModel.swift in Sources */,
 				D41551A0212B3FDB008848DE /* RocketDetailViewModel.swift in Sources */,
 				D41551A4212B4341008848DE /* WindowManager.swift in Sources */,
 				D4155177212B082F008848DE /* RocketsViewModel.swift in Sources */,
 				D41CA16E212C948A00772581 /* DateFormatter+Utility.swift in Sources */,
+				D4E8A2AC21445197002292C5 /* ShipDetailView.swift in Sources */,
+				D4E8A2A521444557002292C5 /* Ship.swift in Sources */,
 				D496E28A212DA6E400F5CEAA /* LaunchDetailViewController.swift in Sources */,
 				D415518A212B3385008848DE /* ListDataManager.swift in Sources */,
 				D4155176212B082F008848DE /* RocketsView.swift in Sources */,
@@ -704,6 +735,7 @@
 				D4F948912138178B00873998 /* Roadster.swift in Sources */,
 				D4155193212B373A008848DE /* LoadingCell.swift in Sources */,
 				D4155191212B36C6008848DE /* UITableView+Reusable.swift in Sources */,
+				D4E8A2AB21445197002292C5 /* ShipDetailViewController.swift in Sources */,
 				D496E28B212DA6E400F5CEAA /* LaunchDetailView.swift in Sources */,
 				D41AE5CA21308F0800EE3EAC /* URL+Utility.swift in Sources */,
 				D4155171212B0561008848DE /* SpaceXAPI.swift in Sources */,

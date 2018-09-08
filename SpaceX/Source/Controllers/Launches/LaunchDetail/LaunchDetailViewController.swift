@@ -40,7 +40,7 @@ class LaunchDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.object.asObservable().unwrap().take(1).subscribe(onNext: { (launch) in
+        viewModel.object.asObservable().map { $0.first }.unwrap().take(1).subscribe(onNext: { (launch) in
             Analytics.trackLaunchDetailShown(for: launch)
         }).disposed(by: bag)
         
@@ -49,8 +49,14 @@ class LaunchDetailViewController: UIViewController {
         _view.tableView.registerCell(LaunchVideoCell.self)
         
         viewModel.dataState.asObservable().subscribe(onNext: { [weak self] (dataState) in
-            self?.listManager.state = .dictData(json: JSONDict())
+            self?.listManager.state = dataState
         }).disposed(by: bag)
+        
+        viewModel.sections.asObservable().subscribe(onNext: { [weak self] (_) in
+            self?._view.tableView.reloadData()
+        }).disposed(by: bag)
+        
+        viewModel.reloadData()
         
     }
     
@@ -89,7 +95,7 @@ extension LaunchDetailViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueCell(LaunchVideoCell.self, indexPath: indexPath)
-            if let videoId = viewModel.object.value?.links?.youTubeVideoId {
+            if let videoId = viewModel.object.value.first?.links?.youTubeVideoId {
                 cell.configure(with: videoId)
             } else {
                 cell.showEmpty()
