@@ -66,6 +66,12 @@
 		D4F9488E2138177400873998 /* RoadsterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F9488B2138177400873998 /* RoadsterView.swift */; };
 		D4F9488F2138177400873998 /* RoadsterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F9488C2138177400873998 /* RoadsterViewModel.swift */; };
 		D4F948912138178B00873998 /* Roadster.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F948902138178B00873998 /* Roadster.swift */; };
+		D4FB25372145776500C76D58 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25342145776500C76D58 /* SideMenuViewController.swift */; };
+		D4FB25382145776500C76D58 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25352145776500C76D58 /* SideMenuView.swift */; };
+		D4FB25392145776500C76D58 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25362145776500C76D58 /* SideMenuViewModel.swift */; };
+		D4FB253D2145778800C76D58 /* RootSideMenuContainmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB253A2145778800C76D58 /* RootSideMenuContainmentViewController.swift */; };
+		D4FB25412145920A00C76D58 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25402145920A00C76D58 /* Math.swift */; };
+		D4FB25432145AD8D00C76D58 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB25422145AD8D00C76D58 /* SideMenuCell.swift */; };
 		DFFC75BBCBC58F9EC7956C26 /* Pods_SpaceX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B159942623C91538977E353 /* Pods_SpaceX.framework */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +163,12 @@
 		D4F9488B2138177400873998 /* RoadsterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsterView.swift; sourceTree = "<group>"; };
 		D4F9488C2138177400873998 /* RoadsterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsterViewModel.swift; sourceTree = "<group>"; };
 		D4F948902138178B00873998 /* Roadster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roadster.swift; sourceTree = "<group>"; };
+		D4FB25342145776500C76D58 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		D4FB25352145776500C76D58 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		D4FB25362145776500C76D58 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
+		D4FB253A2145778800C76D58 /* RootSideMenuContainmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSideMenuContainmentViewController.swift; sourceTree = "<group>"; };
+		D4FB25402145920A00C76D58 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		D4FB25422145AD8D00C76D58 /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		EB0EE27A97D057DC46F20255 /* Pods_SpaceXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F23AD974B57E0B6B617FB19E /* Pods-SpaceXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceXUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpaceXUITests/Pods-SpaceXUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -267,6 +279,7 @@
 		D415516E212B0531008848DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4FB252D2145773A00C76D58 /* SideMenu */,
 				D4F948892138176900873998 /* Roadster */,
 				D41CA164212C917200772581 /* Launches */,
 				D4155178212B0834008848DE /* Rockets */,
@@ -342,6 +355,7 @@
 				D41551A3212B4341008848DE /* WindowManager.swift */,
 				D41551A9212B46D0008848DE /* StyleManager.swift */,
 				D4F948872137EE4900873998 /* Analytics.swift */,
+				D4FB25402145920A00C76D58 /* Math.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -444,6 +458,18 @@
 				D4F9488B2138177400873998 /* RoadsterView.swift */,
 			);
 			path = Roadster;
+			sourceTree = "<group>";
+		};
+		D4FB252D2145773A00C76D58 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D4FB253A2145778800C76D58 /* RootSideMenuContainmentViewController.swift */,
+				D4FB25342145776500C76D58 /* SideMenuViewController.swift */,
+				D4FB25362145776500C76D58 /* SideMenuViewModel.swift */,
+				D4FB25352145776500C76D58 /* SideMenuView.swift */,
+				D4FB25422145AD8D00C76D58 /* SideMenuCell.swift */,
+			);
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 		FC7167A9CCCE287D88EC11A9 /* Pods */ = {
@@ -641,6 +667,7 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/RSSwizzle/RSSwizzle.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${PODS_ROOT}/Reveal-SDK/RevealServer-17/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
@@ -661,6 +688,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSSwizzle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
@@ -711,10 +739,12 @@
 				D4155177212B082F008848DE /* RocketsViewModel.swift in Sources */,
 				D41CA16E212C948A00772581 /* DateFormatter+Utility.swift in Sources */,
 				D4E8A2AC21445197002292C5 /* ShipDetailView.swift in Sources */,
+				D4FB25432145AD8D00C76D58 /* SideMenuCell.swift in Sources */,
 				D4E8A2A521444557002292C5 /* Ship.swift in Sources */,
 				D496E28A212DA6E400F5CEAA /* LaunchDetailViewController.swift in Sources */,
 				D415518A212B3385008848DE /* ListDataManager.swift in Sources */,
 				D4155176212B082F008848DE /* RocketsView.swift in Sources */,
+				D4FB25412145920A00C76D58 /* Math.swift in Sources */,
 				D41CA168212C918000772581 /* LaunchesViewController.swift in Sources */,
 				D415517F212B09BC008848DE /* ValueViewModel.swift in Sources */,
 				D415519F212B3FDB008848DE /* RocketDetailView.swift in Sources */,
@@ -724,6 +754,8 @@
 				D4155175212B082F008848DE /* RocketsViewController.swift in Sources */,
 				D4155183212B0A1F008848DE /* ModelExtensions.swift in Sources */,
 				D41551A8212B455A008848DE /* UINavigationController+Utility.swift in Sources */,
+				D4FB25392145776500C76D58 /* SideMenuViewModel.swift in Sources */,
+				D4FB253D2145778800C76D58 /* RootSideMenuContainmentViewController.swift in Sources */,
 				D48D0525212F3A4400028A84 /* LaunchSiteView.swift in Sources */,
 				D48E2665212BE843008F6785 /* RocketImageCell.swift in Sources */,
 				D415519E212B3FDB008848DE /* RocketDetailViewController.swift in Sources */,
@@ -734,8 +766,10 @@
 				D48D052A212F425800028A84 /* MapCell.swift in Sources */,
 				D4F948912138178B00873998 /* Roadster.swift in Sources */,
 				D4155193212B373A008848DE /* LoadingCell.swift in Sources */,
+				D4FB25372145776500C76D58 /* SideMenuViewController.swift in Sources */,
 				D4155191212B36C6008848DE /* UITableView+Reusable.swift in Sources */,
 				D4E8A2AB21445197002292C5 /* ShipDetailViewController.swift in Sources */,
+				D4FB25382145776500C76D58 /* SideMenuView.swift in Sources */,
 				D496E28B212DA6E400F5CEAA /* LaunchDetailView.swift in Sources */,
 				D41AE5CA21308F0800EE3EAC /* URL+Utility.swift in Sources */,
 				D4155171212B0561008848DE /* SpaceXAPI.swift in Sources */,

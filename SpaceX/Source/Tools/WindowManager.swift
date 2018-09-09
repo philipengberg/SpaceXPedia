@@ -63,7 +63,7 @@ class WindowManager {
     }
     
     func showMainUserInterface() {
-        tabBarController = UITabBarController()
+        tabBarController = RootSideMenuContainmentViewController()
         guard let tabBarController = tabBarController else { return }
 //        tabBarController.delegate = self
         
@@ -82,6 +82,10 @@ class WindowManager {
         tabBarController.tabBar.isHidden = true
         
         rootNavigationController.pushViewController(tabBarController, animated: false)
+    }
+    
+    func show(tab: Tab) {
+        tabBarController?.selectedIndex = tabs.index(of: tab) ?? 0
     }
     
     func rootViewController(for tab: Tab) -> UIViewController? {
