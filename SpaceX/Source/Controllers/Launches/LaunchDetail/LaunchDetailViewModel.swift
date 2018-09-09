@@ -107,10 +107,6 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
             props.append(PropertyWithDetail(propertyName: "Block", propertyValue: "\(block)"))
         }
         
-        if let landingType = core.landingType {
-            props.append(PropertyWithDetail(propertyName: "Landing type", propertyValue: landingType.rawValue))
-        }
-        
         if let flightNumber = core.flightNumber {
             props.append(PropertyWithDetail(propertyName: "Flight number", propertyValue: "#\(flightNumber)"))
         }
