@@ -1,5 +1,5 @@
 //
-//  CoreDetailView.swift
+//  CapsuleDetailView.swift
 //  SpaceX
 //
 //  Created by Philip Engberg on 09/09/2018.
@@ -8,10 +8,11 @@
 
 import UIKit
 
-class CoreDetailView: UIView {
+class CapsuleDetailView: UIView {
     
     let tableView = UITableView().setUp {
         $0.estimatedRowHeight = 44
+        $0.tableFooterView = UIView()
     }
     
     override init(frame: CGRect) {

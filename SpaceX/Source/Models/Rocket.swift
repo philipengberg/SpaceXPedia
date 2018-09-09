@@ -233,7 +233,7 @@ extension Rocket {
         
         let payloadId: String
         let reused: Bool
-        let capSerial: String
+        let capSerial: String?
         let customers: [String]
         let nationality: String?
         let manufacturer: String?
@@ -246,7 +246,7 @@ extension Rocket {
             guard let id = json["payload_id"].string else { return nil }
             self.payloadId = id
             self.reused = json["reused"].boolValue
-            self.capSerial = json["cap_serial"].stringValue
+            self.capSerial = json["cap_serial"].string
             self.customers = json["customers"].arrayValue.compactMap { $0.string }
             self.nationality = json["nationality"].string
             self.manufacturer = json["manufacturer"].string

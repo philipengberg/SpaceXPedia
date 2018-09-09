@@ -12,6 +12,7 @@ class ShipDetailView: UIView {
     
     let tableView = UITableView().setUp {
         $0.estimatedRowHeight = 44
+        $0.tableFooterView = UIView()
     }
     
     override init(frame: CGRect) {

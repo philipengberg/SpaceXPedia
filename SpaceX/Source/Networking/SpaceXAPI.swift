@@ -100,6 +100,9 @@ enum SpaceXTarget {
     case cores
     case core(coreSerial: String)
     
+    case capsules
+    case capsule(capId: String)
+    
     case pastLaunches
     case futureLaunches
     case allLaunches
@@ -146,6 +149,8 @@ extension SpaceXTarget: TargetType {
         case .rocket(let id):       return "/rockets/\(id)"
         case .cores:                return "/parts/cores"
         case .core(let coreSerial): return "/parts/cores/\(coreSerial)"
+        case .capsules:             return "/parts/caps"
+        case .capsule(let capId):   return "/parts/caps/\(capId)"
         case .pastLaunches:         return "/launches"
         case .futureLaunches:       return "/launches/upcoming"
         case .allLaunches:          return "/launches/all"

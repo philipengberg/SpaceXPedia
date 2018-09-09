@@ -39,6 +39,10 @@ struct Analytics {
         Amplitude.instance().logEvent("Core detail shown", withEventProperties: ["Core serial": core.coreSerial!])
     }
     
+    static func trackCapsuleDetailShown(for capsule: Capsule) {
+        Amplitude.instance().logEvent("Capsule detail shown", withEventProperties: ["Capsule serial": capsule.capsuleSerial])
+    }
+    
     static func trackRoadsterShown() {
         Amplitude.instance().logEvent("Roadster shown")
     }

@@ -141,7 +141,12 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
     private func generatePayloadSection(from payload: Rocket.Payload) -> InfoSection {
         var props = [PropertyWithDetail]()
         
+        if let capsule = payload.capSerial {
+            props.append(PropertyWithDetail(propertyName: "Capsule", propertyValue: capsule, detail: .capsuleDetail(capsuleId: capsule)))
+        }
+        
         props.append(PropertyWithDetail(propertyName: "Type", propertyValue: payload.payloadType))
+        
         props.append(PropertyWithDetail(propertyName: "Customers", propertyValue: payload.customers.joined(separator: ", ")))
         
         if let nationality = payload.nationality {

@@ -47,10 +47,6 @@ class CoreDetailViewModel: ValueViewModel<Rocket.Core> {
             props.append(PropertyWithDetail(propertyName: "Status", propertyValue: status.capitalized))
         }
         
-        if let originalLaunch = core.originalLaunch {
-            props.append(PropertyWithDetail(propertyName: "Original launch", propertyValue: DateFormatter.launchDateFormatter.string(from: originalLaunch)))
-        }
-        
         if let reuseCount = core.reuseCount {
             props.append(PropertyWithDetail(propertyName: "Reuse count", propertyValue: "\(reuseCount)"))
         }
@@ -61,6 +57,10 @@ class CoreDetailViewModel: ValueViewModel<Rocket.Core> {
         
         if let asdsLandings = core.asdsLandings {
             props.append(PropertyWithDetail(propertyName: "ASDS landings", propertyValue: "\(asdsLandings)"))
+        }
+        
+        if let originalLaunch = core.originalLaunch {
+            props.append(PropertyWithDetail(propertyName: "Original launch", propertyValue: DateFormatter.launchDateFormatter.string(from: originalLaunch)))
         }
         
         if let details = core.details {
