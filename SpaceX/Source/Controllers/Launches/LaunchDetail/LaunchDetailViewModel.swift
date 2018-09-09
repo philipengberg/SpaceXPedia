@@ -30,7 +30,7 @@ struct PropertyWithDetail {
     }
 }
 
-class LaunchDetailViewModel: ValuesViewModel<Launch> {
+class LaunchDetailViewModel: ValueViewModel<Launch> {
     
     let numberFormatter = NumberFormatter().setUp {
         $0.numberStyle = .decimal
@@ -45,9 +45,8 @@ class LaunchDetailViewModel: ValuesViewModel<Launch> {
         
         dataState.asObservable().take(1).flatMap { _ in SpaceXAPI.request(.ships).filterSuccessfulStatusCodes().mapJSON().mapToModels(Ship.self) }.bind(to: ships).disposed(by: bag)
         
-        Observable.combineLatest(object.asObservable(), ships.asObservable()).map { [weak self] (launches, ships) -> [InfoSection]? in
+        Observable.combineLatest(object.asObservable().unwrap(), ships.asObservable()).map { [weak self] (launch, ships) -> [InfoSection]? in
             guard let s = self else { return nil }
-            guard let launch = launches.first else { return nil }
             return s.generateAllSections(from: launch)
         }.unwrap().bind(to: sections).disposed(by: bag)
     }

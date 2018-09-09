@@ -121,7 +121,7 @@ extension SpaceXTarget: TargetType {
     
     var version: String {
         switch self {
-        case .ships, .ship: return "v3"
+        case .ships, .ship, .launch: return "v3"
         default: return "v2"
         }
     }
@@ -140,7 +140,7 @@ extension SpaceXTarget: TargetType {
         case .pastLaunches:     return "/launches"
         case .futureLaunches:   return "/launches/upcoming"
         case .allLaunches:      return "/launches/all"
-        case .launch:           return "/launches"
+        case .launch(let flight): return "/launches/\(flight)"
         case .launchSite(let id): return "/launchpads/\(id)"
         case .roadster:         return "/info/roadster"
         case .ships:            return "/ships"
@@ -158,7 +158,6 @@ extension SpaceXTarget: TargetType {
     var parameters: [String: Any]? {
         switch self {
         case .pastLaunches: return ["sort": "launch_date_utc", "order": "desc"]
-        case .launch(let flightNumber): return ["flight_number": flightNumber]
         default:
             return nil
         }
