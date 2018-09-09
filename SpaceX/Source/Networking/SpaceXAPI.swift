@@ -96,12 +96,19 @@ private class Logger: PluginType {
 enum SpaceXTarget {
     case rockets
     case rocket(id: String)
+    
+    case cores
+    case core(coreSerial: String)
+    
     case pastLaunches
     case futureLaunches
     case allLaunches
     case launch(flightNumber: Int)
+    
     case launchSite(id: String)
+    
     case roadster
+    
     case ships
     case ship(shipId: String)
 }
@@ -135,16 +142,18 @@ extension SpaceXTarget: TargetType {
     
     var path: String {
         switch self {
-        case .rockets:          return "/rockets"
-        case .rocket(let id):   return "/rockets/\(id)"
-        case .pastLaunches:     return "/launches"
-        case .futureLaunches:   return "/launches/upcoming"
-        case .allLaunches:      return "/launches/all"
-        case .launch(let flight): return "/launches/\(flight)"
-        case .launchSite(let id): return "/launchpads/\(id)"
-        case .roadster:         return "/info/roadster"
-        case .ships:            return "/ships"
-        case .ship(let shipId): return "/ships/\(shipId)"
+        case .rockets:              return "/rockets"
+        case .rocket(let id):       return "/rockets/\(id)"
+        case .cores:                return "/parts/cores"
+        case .core(let coreSerial): return "/parts/cores/\(coreSerial)"
+        case .pastLaunches:         return "/launches"
+        case .futureLaunches:       return "/launches/upcoming"
+        case .allLaunches:          return "/launches/all"
+        case .launch(let flight):   return "/launches/\(flight)"
+        case .launchSite(let id):   return "/launchpads/\(id)"
+        case .roadster:             return "/info/roadster"
+        case .ships:                return "/ships"
+        case .ship(let shipId):     return "/ships/\(shipId)"
         }
     }
     

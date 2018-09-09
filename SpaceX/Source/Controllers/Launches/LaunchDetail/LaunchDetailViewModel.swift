@@ -100,7 +100,7 @@ class LaunchDetailViewModel: ValueViewModel<Launch> {
         var props = [PropertyWithDetail]()
         
         if let coreSerial = core.coreSerial {
-            props.append(PropertyWithDetail(propertyName: "Serial", propertyValue: coreSerial))
+            props.append(PropertyWithDetail(propertyName: "Serial", propertyValue: coreSerial, detail: .coreDetail(coreSerial: coreSerial)))
         }
         
         if let block = core.block {
