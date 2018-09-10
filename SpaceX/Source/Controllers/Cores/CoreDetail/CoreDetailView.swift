@@ -1,17 +1,17 @@
 //
-//  RocketDetailView.swift
+//  CoreDetailView.swift
 //  SpaceX
 //
-//  Created by Philip Engberg on 20/08/2018.
+//  Created by Philip Engberg on 09/09/2018.
 //  Copyright © 2018 Simple Sense. All rights reserved.
 //
 
 import UIKit
 
-class RocketDetailView: UIView {
+class CoreDetailView: UIView {
     
     let tableView = UITableView().setUp {
-        $0.allowsSelection = false
+        $0.estimatedRowHeight = 44
         $0.tableFooterView = UIView()
     }
     
@@ -19,8 +19,6 @@ class RocketDetailView: UIView {
         super.init(frame: .zero)
         
         addSubviews([tableView])
-        
-        backgroundColor = .white
         
         setNeedsUpdateConstraints()
     }

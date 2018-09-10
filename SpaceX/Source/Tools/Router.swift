@@ -24,6 +24,8 @@ class Router {
         case launchSite(siteId: String)
         case web(url: URL)
         case shipDetail(shipId: String)
+        case coreDetail(coreSerial: String)
+        case capsuleDetail(capsuleId: String)
     }
     
     @discardableResult
@@ -47,6 +49,12 @@ class Router {
             
         case .launchSite(let siteId):
             return Router.Internal.show(viewController: LaunchSiteViewController(viewModel: LaunchSiteViewModel(launchSiteId: siteId)), with: .push(forceFromRoot: false))
+            
+        case .coreDetail(let coreSerial):
+            return Router.Internal.show(viewController: CoreDetailViewController(viewModel: CoreDetailViewModel(coreSerial: coreSerial)), with: .push(forceFromRoot: false))
+            
+        case .capsuleDetail(let capsuleId):
+            return Router.Internal.show(viewController: CapsuleDetailViewController(viewModel: CapsuleDetailViewModel(capsuleId: capsuleId)), with: .push(forceFromRoot: false))
             
         case .web(let url):
             let safariViewController = SFSafariViewController(url: url)

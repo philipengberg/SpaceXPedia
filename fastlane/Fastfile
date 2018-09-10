@@ -26,8 +26,6 @@ platform :ios do
   #--------------------------- App Store -------------------------#
 
   private_lane :app_store do |options|
-
-  	match(type: "development", app_identifier: "#{ENV['APP_IDENTIFIER']}.#{scheme.downcase}")
     
     if options[:include_meta]
       upload_metadata
@@ -82,10 +80,13 @@ platform :ios do
 
   after_all do |lane|
 
+    build = get_build_number(xcodeproj: "SpaceX.xcodeproj")
+    git_commit(path: "*", message: "Build #{build}")
+    push_to_git_remote(tags: false)
+
     if lane == :release
       sh "watchbuild -a #{ENV['APP_IDENTIFIER']} -u #{ENV['FASTLANE_USER']}"
     end
-
     notification(subtitle: "Success", message: "Finished '#{lane}' successfully")
   end
 
