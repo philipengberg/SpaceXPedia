@@ -30,7 +30,7 @@ struct Ship: Serialization {
     let currentPosition: Position?
     let successfulLandings: Int?
     let attemptedLandings: Int?
-    let missions: [String]
+    let missions: [MissionReference]
     let url: URL?
     let imageUrl: URL?
     
@@ -55,7 +55,7 @@ struct Ship: Serialization {
         self.currentPosition = Position(json: json["position"])
         self.successfulLandings = json["successful_landings"].int
         self.attemptedLandings = json["attempted_landings"].int
-        self.missions = json["missions"].arrayValue.compactMap { $0.string }
+        self.missions = json["missions"].arrayValue.compactMap { MissionReference(json: $0) }
         self.url = json["url"].url
         self.imageUrl = json["image"].url
     }

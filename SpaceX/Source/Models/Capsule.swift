@@ -15,7 +15,7 @@ struct Capsule: Serialization {
     let capsuleId: String
     let status: String
     let originalLaunch: Date?
-    let missions: [String]?
+    let missions: [MissionReference]?
     let landings: Int
     let type: String
     let details: String?
@@ -29,7 +29,7 @@ struct Capsule: Serialization {
         self.originalLaunch = DateFormatter.ISO8601.date(from: json["original_launch"].stringValue)
         
         if json["missions"].exists() {
-            self.missions = json["missions"].arrayValue.compactMap { $0.string }
+            self.missions = json["missions"].arrayValue.compactMap { MissionReference(json: $0) }
         } else {
             self.missions = nil
         }

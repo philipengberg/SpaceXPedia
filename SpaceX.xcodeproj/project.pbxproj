@@ -53,6 +53,7 @@
 		D433C0F121452C7100ED9469 /* CapsuleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C0EE21452C7100ED9469 /* CapsuleDetailView.swift */; };
 		D433C0F221452C7100ED9469 /* CapsuleDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C0EF21452C7100ED9469 /* CapsuleDetailViewModel.swift */; };
 		D433C0F421452D2400ED9469 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C0F321452D2400ED9469 /* Capsule.swift */; };
+		D4683BB42146F048002EF565 /* MissionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4683BB32146F048002EF565 /* MissionReference.swift */; };
 		D48D051F212F297700028A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48D051E212F297700028A84 /* Assets.xcassets */; };
 		D48D0524212F3A4400028A84 /* LaunchSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D0521212F3A4400028A84 /* LaunchSiteViewController.swift */; };
 		D48D0525212F3A4400028A84 /* LaunchSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D0522212F3A4400028A84 /* LaunchSiteView.swift */; };
@@ -152,6 +153,7 @@
 		D433C0EE21452C7100ED9469 /* CapsuleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleDetailView.swift; sourceTree = "<group>"; };
 		D433C0EF21452C7100ED9469 /* CapsuleDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleDetailViewModel.swift; sourceTree = "<group>"; };
 		D433C0F321452D2400ED9469 /* Capsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capsule.swift; sourceTree = "<group>"; };
+		D4683BB32146F048002EF565 /* MissionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionReference.swift; sourceTree = "<group>"; };
 		D48D051E212F297700028A84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48D0521212F3A4400028A84 /* LaunchSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSiteViewController.swift; sourceTree = "<group>"; };
 		D48D0522212F3A4400028A84 /* LaunchSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSiteView.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				D4F948902138178B00873998 /* Roadster.swift */,
 				D433C0F321452D2400ED9469 /* Capsule.swift */,
 				D4E8A2A421444557002292C5 /* Ship.swift */,
+				D4683BB32146F048002EF565 /* MissionReference.swift */,
 				D4155186212B227C008848DE /* Measurements.swift */,
 				D415517D212B09B2008848DE /* Utility */,
 			);
@@ -794,6 +797,7 @@
 				D4155187212B227C008848DE /* Measurements.swift in Sources */,
 				D4F948882137EE4900873998 /* Analytics.swift in Sources */,
 				D48D052A212F425800028A84 /* MapCell.swift in Sources */,
+				D4683BB42146F048002EF565 /* MissionReference.swift in Sources */,
 				D4F948912138178B00873998 /* Roadster.swift in Sources */,
 				D4155193212B373A008848DE /* LoadingCell.swift in Sources */,
 				D433C0E9214520D300ED9469 /* CoreDetailViewModel.swift in Sources */,

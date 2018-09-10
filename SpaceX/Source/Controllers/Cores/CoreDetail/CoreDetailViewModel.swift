@@ -73,7 +73,7 @@ class CoreDetailViewModel: ValueViewModel<Rocket.Core> {
     private func generateMissionsSection(from core: Rocket.Core) -> InfoSection? {
         guard let missions = core.missions, missions.count > 0 else { return nil }
         
-        return InfoSection(sectionName: "Missions", properties: missions.map { PropertyWithDetail(propertyName: $0, propertyValue: "") })
+        return InfoSection(sectionName: "Missions", properties: missions.map { PropertyWithDetail(propertyName: $0.name, propertyValue: "", detail: Router.Destination.launchDetail(flightNumber: $0.flightId)) })
     }
     
 }

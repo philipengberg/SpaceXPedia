@@ -188,7 +188,7 @@ extension Rocket {
         let originalLaunch: Date?
         let reuseCount: Int?
         let details: String?
-        let missions: [String]?
+        let missions: [MissionReference]?
         let rtlsLandings: Int?
         let asdsLandings: Int?
         
@@ -209,7 +209,7 @@ extension Rocket {
             self.details = json["details"].string
             
             if json["missions"].exists() {
-                self.missions = json["missions"].arrayValue.compactMap { $0.string }
+                self.missions = json["missions"].arrayValue.compactMap { MissionReference(json: $0) }
             } else {
                 self.missions = nil
             }

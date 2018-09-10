@@ -58,7 +58,7 @@ class CapsuleDetailViewModel: ValueViewModel<Capsule> {
     private func generateMissionsSection(from capsule: Capsule) -> InfoSection? {
         guard let missions = capsule.missions, missions.count > 0 else { return nil }
         
-        return InfoSection(sectionName: "Missions", properties: missions.map { PropertyWithDetail(propertyName: $0, propertyValue: "") })
+        return InfoSection(sectionName: "Missions", properties: missions.map { PropertyWithDetail(propertyName: $0.name, propertyValue: "", detail: Router.Destination.launchDetail(flightNumber: $0.flightId)) })
     }
     
 }
