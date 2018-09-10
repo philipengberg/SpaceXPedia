@@ -30,6 +30,10 @@ extension DateFormatter {
         $0.setLocalizedDateFormatFromTemplate("MMM yyyy")
     }
     
+    static let launchDateNETQuarterFormatter = DateFormatter().setUp {
+        $0.setLocalizedDateFormatFromTemplate("QQQ yyyy")
+    }
+    
     static let launchDateNETYearFormatter = DateFormatter().setUp {
         $0.setLocalizedDateFormatFromTemplate("yyyy")
     }
