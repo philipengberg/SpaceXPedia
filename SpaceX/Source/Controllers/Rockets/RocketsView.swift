@@ -11,7 +11,9 @@ import SnapKit
 
 class RocketsView: UIView {
     
-    let tableView = UITableView(frame: .zero)
+    let tableView = UITableView(frame: .zero).setUp {
+        $0.tableFooterView = UIView()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
