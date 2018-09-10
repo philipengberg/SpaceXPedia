@@ -109,7 +109,6 @@ extension LaunchDetailViewController: UITableViewDataSource {
             cell.detailTextLabel?.text = property.propertyValue
             cell.accessoryType = property.detail == nil ? .none : .disclosureIndicator
             cell.selectionStyle = property.detail == nil ? .none : .default
-            cell.imageView?.image = property.image
             
             if property.longValueText {
                 cell.detailTextLabel?.numberOfLines = 0

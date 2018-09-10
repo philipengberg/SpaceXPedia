@@ -32,6 +32,7 @@ struct Ship: Serialization {
     let attemptedLandings: Int?
     let missions: [String]
     let url: URL?
+    let imageUrl: URL?
     
     init?(json: JSON) {
         guard let shipId = json["ship_id"].string else { return nil }
@@ -56,6 +57,7 @@ struct Ship: Serialization {
         self.attemptedLandings = json["attempted_landings"].int
         self.missions = json["missions"].arrayValue.compactMap { $0.string }
         self.url = json["url"].url
+        self.imageUrl = json["image"].url
     }
     
 }
