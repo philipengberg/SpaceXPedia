@@ -44,7 +44,7 @@ class LaunchDetailViewController: UIViewController {
             Analytics.trackLaunchDetailShown(for: launch)
         }).disposed(by: bag)
         
-        viewModel.object.asObservable().map { $0.first }.unwrap().map { $0.missionName }.bind(to: self.rx.title).disposed(by: bag)
+        viewModel.object.asObservable().unwrap().map { $0.missionName }.bind(to: self.rx.title).disposed(by: bag)
         
         _view.tableView.registerCell(LaunchVideoCell.self)
         
