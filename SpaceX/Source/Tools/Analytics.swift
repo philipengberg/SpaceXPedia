@@ -16,35 +16,55 @@ struct Analytics {
     }
     
     static func trackLaunchesShown() {
-        Amplitude.instance().logEvent("Launches shown")
+        track("Launches shown")
     }
     
     static func trackLaunchDetailShown(for launch: Launch) {
-        Amplitude.instance().logEvent("Launch detail shown", withEventProperties: ["Launch name": launch.missionName, "Is upcoming": launch.launchDate.isUpcoming])
+        track("Launch detail shown", properties: ["Launch name": launch.missionName, "Is upcoming": launch.launchDate.isUpcoming])
     }
     
     static func trackLaunchSiteShown(for launchSite: LaunchSite) {
-        Amplitude.instance().logEvent("Launch site shown", withEventProperties: ["Launch site name": launchSite.fullName])
+        track("Launch site shown", properties: ["Launch site name": launchSite.fullName])
     }
     
     static func trackRocketDetailShown(for rocket: Rocket) {
-        Amplitude.instance().logEvent("Rocket detail shown", withEventProperties: ["Rocket name": rocket.name])
+        track("Rocket detail shown", properties: ["Rocket name": rocket.name])
     }
     
     static func trackShipDetailShown(for ship: Ship) {
-        Amplitude.instance().logEvent("Ship detail shown", withEventProperties: ["Ship name": ship.shipName])
+        track("Ship detail shown", properties: ["Ship name": ship.shipName])
     }
     
     static func trackCoreDetailShown(for core: Rocket.Core) {
-        Amplitude.instance().logEvent("Core detail shown", withEventProperties: ["Core serial": core.coreSerial!])
+        track("Core detail shown", properties: ["Core serial": core.coreSerial!])
     }
     
     static func trackCapsuleDetailShown(for capsule: Capsule) {
-        Amplitude.instance().logEvent("Capsule detail shown", withEventProperties: ["Capsule serial": capsule.capsuleSerial])
+        track("Capsule detail shown", properties: ["Capsule serial": capsule.capsuleSerial])
     }
     
     static func trackRoadsterShown() {
-        Amplitude.instance().logEvent("Roadster shown")
+        track("Roadster shown")
+    }
+    
+    private static func track(_ event: String) {
+        #if !targetEnvironment(simulator)
+        Amplitude.instance().logEvent(event)
+        
+        #if DEBUG
+        print("Tracking: \"\(event)\"")
+        #endif
+        #endif
+    }
+    
+    private static func track(_ event: String, properties: [String: Any]) {
+        #if !targetEnvironment(simulator)
+        Amplitude.instance().logEvent(event, withEventProperties: properties)
+        
+        #if DEBUG
+        print("Tracking: \"\(event)\"" + "\n" + "\(properties.map { "\t\"\($0)\": \($1)" }.joined(separator: "\n"))")
+        #endif
+        #endif
     }
     
 }
