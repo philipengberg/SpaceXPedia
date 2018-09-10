@@ -51,12 +51,12 @@ class CoreDetailViewModel: ValueViewModel<Rocket.Core> {
             props.append(PropertyWithDetail(propertyName: "Reuse count", propertyValue: "\(reuseCount)"))
         }
         
-        if let rtlsLandings = core.rtlsLandings {
-            props.append(PropertyWithDetail(propertyName: "RTLS landings", propertyValue: "\(rtlsLandings)"))
+        if let rtlsLandings = core.rtlsLandings, let rtlsLandingAttempts = core.rtlsLandingAttempts {
+            props.append(PropertyWithDetail(propertyName: "RTLS landings", propertyValue: "\(rtlsLandings)/\(rtlsLandingAttempts)"))
         }
         
-        if let asdsLandings = core.asdsLandings {
-            props.append(PropertyWithDetail(propertyName: "ASDS landings", propertyValue: "\(asdsLandings)"))
+        if let asdsLandings = core.asdsLandings, let asdsLandingAttempts = core.asdsLandingAttempts {
+            props.append(PropertyWithDetail(propertyName: "ASDS landings", propertyValue: "\(asdsLandings)/\(asdsLandingAttempts)"))
         }
         
         if let originalLaunch = core.originalLaunch {

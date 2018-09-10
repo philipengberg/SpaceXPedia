@@ -189,7 +189,9 @@ extension Rocket {
         let reuseCount: Int?
         let details: String?
         let missions: [MissionReference]?
+        let rtlsLandingAttempts: Int?
         let rtlsLandings: Int?
+        let asdsLandingAttempts: Int?
         let asdsLandings: Int?
         
         init?(json: JSON) {
@@ -214,7 +216,9 @@ extension Rocket {
                 self.missions = nil
             }
             
+            self.rtlsLandingAttempts = json["rtls_attempts"].int
             self.rtlsLandings = json["rtls_landings"].int
+            self.asdsLandingAttempts = json["asds_attempts"].int
             self.asdsLandings = json["asds_landings"].int
         }
         
