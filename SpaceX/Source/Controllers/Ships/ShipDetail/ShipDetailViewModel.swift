@@ -53,7 +53,8 @@ class ShipDetailViewModel: ValueViewModel<Ship> {
     }
     
     private func generateBasicInfoSection(from ship: Ship) -> InfoSection {
-        var props = [PropertyWithDetail(propertyName: "Name", propertyValue: ship.shipName)]
+        var props = [PropertyWithDetail(propertyName: nil, propertyValue: nil, imageUrl: ship.imageUrl),
+                     PropertyWithDetail(propertyName: "Name", propertyValue: ship.shipName)]
         
         if let model = ship.shipModel {
             props.append(PropertyWithDetail(propertyName: "Model", propertyValue: model))

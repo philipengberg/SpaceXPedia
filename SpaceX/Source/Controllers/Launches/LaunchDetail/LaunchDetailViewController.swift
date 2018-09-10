@@ -44,7 +44,7 @@ class LaunchDetailViewController: UIViewController {
             Analytics.trackLaunchDetailShown(for: launch)
         }).disposed(by: bag)
         
-        viewModel.object.asObservable().unwrap().map { $0.missionName }.bind(to: self.rx.title).disposed(by: bag)
+        viewModel.object.asObservable().map { $0.first }.unwrap().map { $0.missionName }.bind(to: self.rx.title).disposed(by: bag)
         
         _view.tableView.registerCell(LaunchVideoCell.self)
         
@@ -109,7 +109,6 @@ extension LaunchDetailViewController: UITableViewDataSource {
             cell.detailTextLabel?.text = property.propertyValue
             cell.accessoryType = property.detail == nil ? .none : .disclosureIndicator
             cell.selectionStyle = property.detail == nil ? .none : .default
-            cell.imageView?.image = property.image
             
             if property.longValueText {
                 cell.detailTextLabel?.numberOfLines = 0

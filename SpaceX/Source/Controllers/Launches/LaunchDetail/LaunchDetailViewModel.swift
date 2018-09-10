@@ -15,17 +15,17 @@ struct InfoSection {
 }
 
 struct PropertyWithDetail {
-    let propertyName: String
-    let propertyValue: String
+    let propertyName: String?
+    let propertyValue: String?
+    let imageUrl: URL?
     let detail: Router.Destination?
-    let image: UIImage?
     let longValueText: Bool
     
-    init(propertyName: String, propertyValue: String, detail: Router.Destination? = nil, image: UIImage? = nil, longValueText: Bool = false) {
+    init(propertyName: String?, propertyValue: String?, imageUrl: URL? = nil, detail: Router.Destination? = nil, longValueText: Bool = false) {
         self.propertyName = propertyName
         self.propertyValue = propertyValue
+        self.imageUrl = imageUrl
         self.detail = detail
-        self.image = image
         self.longValueText = longValueText
     }
 }
@@ -91,7 +91,7 @@ class LaunchDetailViewModel: ValuesViewModel<Launch> {
         }
         
         props.append(PropertyWithDetail(propertyName: "Location", propertyValue: launch.site!.siteName, detail: Router.Destination.launchSite(siteId: launch.site!.id)))
-        props.append(PropertyWithDetail(propertyName: "Rocket", propertyValue: launch.rocket.name, detail: Router.Destination.rocketDetail(rocketId: launch.rocket.id), image: launch.rocket.type.image))
+        props.append(PropertyWithDetail(propertyName: "Rocket", propertyValue: launch.rocket.name, detail: Router.Destination.rocketDetail(rocketId: launch.rocket.id)))
         
         return InfoSection(sectionName: nil, properties: props)
     }

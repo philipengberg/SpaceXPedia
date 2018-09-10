@@ -40,6 +40,8 @@ class ShipDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        _view.tableView.registerCell(ImageCell.self)
+        
         viewModel.object.asObservable().unwrap().take(1).subscribe(onNext: { (ship) in
             Analytics.trackShipDetailShown(for: ship)
         }).disposed(by: bag)
@@ -87,12 +89,18 @@ extension ShipDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let property = viewModel.sections.value[indexPath.section].properties[indexPath.row]
+        
+        if let imageUrl = property.imageUrl {
+            let cell = tableView.dequeueCell(ImageCell.self, indexPath: indexPath)
+            cell.configure(with: imageUrl)
+            return cell
+        }
+        
         let cell = UITableViewCell(style: property.longValueText ? .subtitle : .value1, reuseIdentifier: "UITableViewCell")
         cell.textLabel?.text = property.propertyName
         cell.detailTextLabel?.text = property.propertyValue
         cell.accessoryType = property.detail == nil ? .none : .disclosureIndicator
         cell.selectionStyle = property.detail == nil ? .none : .default
-        cell.imageView?.image = property.image
         
         if property.longValueText {
             cell.detailTextLabel?.numberOfLines = 0
