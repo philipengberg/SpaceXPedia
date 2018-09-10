@@ -105,7 +105,7 @@ class LaunchOverviewCell: UITableViewCell {
         
         launchDateLabel.left = dateIconImageView.right + 4
         launchDateLabel.sizeToFit()
-        launchDateLabel.width = disclosureIndicatorImageView.left - launchDateLabel.left - 5
+        launchDateLabel.width = nameLabel.right - launchDateLabel.left - 5
         launchDateLabel.centerY = dateIconImageView.centerY
         
         launchSiteIconImageView.size = CGSize(width: 14, height: 14)
@@ -150,48 +150,30 @@ class LaunchOverviewCell: UITableViewCell {
         countdownLabel.top = missionPatchImageView.bottom + 10
     }
     
-    func configure(with launch: Launch) {
+    func configure(with viewModel: LaunchOverviewCellViewModel) {
         
-        nameLabel.text = launch.missionName
+        nameLabel.text = viewModel.missionName
+        vehicleNameLabel.text = viewModel.vehicleName
+        launchDateLabel.text = viewModel.launchDataText
+        countdownLabel.text = viewModel.countDownText
+        launchSiteLabel.text = viewModel.launchSiteName
         
-        if let firstCoreBlock = launch.rocket.firstStage?.cores.first?.block {
-            vehicleNameLabel.text = "\(launch.rocket.name) \(launch.rocket.version) Block \(firstCoreBlock)"
-        } else {
-            vehicleNameLabel.text = "\(launch.rocket.name) \(launch.rocket.version)"
-        }
-        
-        if let launchDate = launch.launchDate {
-            launchDateLabel.text = (launch.upcoming ? "\(DateFormatter().shortWeekdaySymbols[Calendar.current.component(.weekday, from: launchDate) - 1]), " : "") + DateFormatter.launchDateFormatter.string(from: launchDate)
-            
-            if launch.upcoming {
-                let lol = DateComponentsFormatter()
-                lol.unitsStyle = .full
-                lol.maximumUnitCount = 2
-                countdownLabel.text = lol.string(from: TimePeriod(beginning: Date(), end: launchDate).duration)
-                countdownLabel.isHidden = false
-            }
-        }
-        
-        if let missionPatch = launch.links?.missionPatch, let missionPatchUrl = URL(string: missionPatch) {
+        if let missionPatch = viewModel.launch.links?.missionPatch, let missionPatchUrl = URL(string: missionPatch) {
             missionPatchImageView.af_setImage(withURL: missionPatchUrl)
             missionPatchImageView.alpha = 1
         } else {
             missionPatchImageView.image = #imageLiteral(resourceName: "launch-placeholder")
-            missionPatchImageView.alpha = 0.7
-        }
-        
-        if let launchSite = launch.site?.siteName {
-            launchSiteLabel.text = launchSite
+            missionPatchImageView.alpha = 1
         }
         
         payloadOrbitTagViews.forEach { $0.removeFromSuperview() }
-        payloadOrbitTagViews = (launch.rocket.secondStage?.payloads ?? []).map({ (payload) -> TagView in
+        payloadOrbitTagViews = viewModel.payloads.map({ (payload) -> TagView in
             let payloadOrbitTagView = TagView()
             payloadOrbitTagView.text = payload.orbit
             payloadOrbitTagView.image = #imageLiteral(resourceName: "orbit-icon")
             payloadOrbitTagView.isHidden = false
             
-            switch launch.launchSuccess {
+            switch viewModel.launch.launchSuccess {
             case .some(let success):
                 switch success {
                 case true: payloadOrbitTagView.color = .succeededColor
@@ -205,7 +187,7 @@ class LaunchOverviewCell: UITableViewCell {
         actualContentView.addSubviews(payloadOrbitTagViews)
         
         landingSiteTagViews.forEach { $0.removeFromSuperview() }
-        landingSiteTagViews = (launch.rocket.firstStage?.cores ?? []).compactMap({ (core) -> TagView? in
+        landingSiteTagViews = viewModel.cores.compactMap({ (core) -> TagView? in
             guard let landingVehicle = core.landingVehicle else { return nil }
             let landingSiteTagView = TagView()
             landingSiteTagView.text = landingVehicle
@@ -227,29 +209,6 @@ class LaunchOverviewCell: UITableViewCell {
         
         setNeedsLayout()
     }
-    
-    private func tagView(with text: String) -> TagView {
-        let tagView = TagView()
-        tagView.text = text
-        return tagView
-    }
-    
-//    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-////        super.setHighlighted(highlighted, animated: animated)
-//
-//        if highlighted && animated {
-//            let shrinkAnimation = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
-//            shrinkAnimation?.toValue = NSValue(cgSize: CGSize(width: 0.95, height: 0.95))
-//            shrinkAnimation?.duration = 0.1
-//            layer.pop_add(shrinkAnimation, forKey: "shrink")
-//        } else if animated {
-//            let releaseAnimation = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
-//            releaseAnimation?.toValue = NSValue(cgSize: CGSize(width: 1.0, height: 1.0))
-//            releaseAnimation?.velocity = NSValue(cgPoint: CGPoint(x: 2, y: 2))
-//            releaseAnimation?.springBounciness = 20
-//            layer.pop_add(releaseAnimation, forKey: "shrink")
-//        }
-//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -286,8 +245,6 @@ class LaunchOverviewCell: UITableViewCell {
         
         launchDateLabel.text = nil
         launchSiteLabel.text = nil
-        
-        countdownLabel.isHidden = true
         
         missionPatchImageView.image = nil
         missionPatchImageView.af_cancelImageRequest()

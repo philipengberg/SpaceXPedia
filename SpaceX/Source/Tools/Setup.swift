@@ -26,3 +26,4 @@ extension NSMutableParagraphStyle: Setup {}
 extension CALayer: Setup {}
 extension NumberFormatter: Setup {}
 extension DateFormatter: Setup {}
+extension DateComponentsFormatter: Setup {}

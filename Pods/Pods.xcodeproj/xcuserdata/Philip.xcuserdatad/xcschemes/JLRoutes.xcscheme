@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4233DC7CE7062005620CD480721675AC"
+               BlueprintIdentifier = "C0730D6A69AA1B0291E9FBA950A145A3"
                BlueprintName = "JLRoutes"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "JLRoutes.framework">

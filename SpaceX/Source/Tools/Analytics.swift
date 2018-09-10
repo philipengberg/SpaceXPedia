@@ -20,7 +20,7 @@ struct Analytics {
     }
     
     static func trackLaunchDetailShown(for launch: Launch) {
-        Amplitude.instance().logEvent("Launch detail shown", withEventProperties: ["Launch name": launch.missionName])
+        Amplitude.instance().logEvent("Launch detail shown", withEventProperties: ["Launch name": launch.missionName, "Is upcoming": launch.launchDate.isUpcoming])
     }
     
     static func trackLaunchSiteShown(for launchSite: LaunchSite) {
@@ -29,6 +29,18 @@ struct Analytics {
     
     static func trackRocketDetailShown(for rocket: Rocket) {
         Amplitude.instance().logEvent("Rocket detail shown", withEventProperties: ["Rocket name": rocket.name])
+    }
+    
+    static func trackShipDetailShown(for ship: Ship) {
+        Amplitude.instance().logEvent("Ship detail shown", withEventProperties: ["Ship name": ship.shipName])
+    }
+    
+    static func trackCoreDetailShown(for core: Rocket.Core) {
+        Amplitude.instance().logEvent("Core detail shown", withEventProperties: ["Core serial": core.coreSerial!])
+    }
+    
+    static func trackCapsuleDetailShown(for capsule: Capsule) {
+        Amplitude.instance().logEvent("Capsule detail shown", withEventProperties: ["Capsule serial": capsule.capsuleSerial])
     }
     
     static func trackRoadsterShown() {

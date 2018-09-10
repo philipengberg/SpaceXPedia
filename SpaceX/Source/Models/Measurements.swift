@@ -37,6 +37,12 @@ struct Weight: Serialization {
         self.pounds = json["lb"].doubleValue
     }
     
+    init?(kilos: Double?, pounds: Double?) {
+        guard let kg = kilos, let lbs = pounds else { return nil }
+        self.kilos = kg
+        self.pounds = lbs
+    }
+    
     init(kilos: Double, pounds: Double) {
         self.kilos = kilos
         self.pounds = pounds
@@ -79,4 +85,22 @@ struct Speed: Serialization {
     }
     
     static let empty = Speed(kmh: 0, mph: 0)
+}
+
+struct Position: Serialization {
+    let latitude: Double
+    let longitude: Double
+    
+    init?(json: JSON) {
+        guard json["latitude"].exists() && json["longitude"].exists() else { return nil }
+        self.latitude = json["latitude"].doubleValue
+        self.longitude = json["longitude"].doubleValue
+    }
+    
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
+    static let empty = Position(latitude: 0, longitude: 0)
 }
