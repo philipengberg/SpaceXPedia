@@ -46,6 +46,7 @@ platform :ios do
     pilot(
       ipa: "fastlane/build/SpaceX.ipa",
       skip_submission: true,
+      skip_waiting_for_build_processing: true
     )
     
   end
