@@ -246,8 +246,6 @@ class LaunchOverviewCell: UITableViewCell {
         launchDateLabel.text = nil
         launchSiteLabel.text = nil
         
-        countdownLabel.isHidden = true
-        
         missionPatchImageView.image = nil
         missionPatchImageView.af_cancelImageRequest()
         

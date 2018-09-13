@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1E9B04D1EC7046190A5C92E2 /* Pods_SpaceXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0EE27A97D057DC46F20255 /* Pods_SpaceXUITests.framework */; };
 		AD46DB136876D803C1BE948D /* Pods_SpaceXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B709E78199FC9E4C8308B97 /* Pods_SpaceXTests.framework */; };
-		D402AC572146DF0700D18131 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D402AC562146DF0700D18131 /* ImageCell.swift */; };
+		D402AC592146ECDC00D18131 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D402AC582146ECDC00D18131 /* ImageCell.swift */; };
 		D4155140212B02C9008848DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D415513F212B02C9008848DE /* AppDelegate.swift */; };
 		D415514A212B02CA008848DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4155148212B02CA008848DE /* LaunchScreen.storyboard */; };
 		D4155155212B02CA008848DE /* SpaceXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4155154212B02CA008848DE /* SpaceXTests.swift */; };
@@ -46,6 +46,14 @@
 		D41CA16C212C919600772581 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA16B212C919600772581 /* Launch.swift */; };
 		D41CA16E212C948A00772581 /* DateFormatter+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA16D212C948A00772581 /* DateFormatter+Utility.swift */; };
 		D41CA170212C9E9500772581 /* LaunchOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41CA16F212C9E9500772581 /* LaunchOverviewCell.swift */; };
+		D433C0E7214520D300ED9469 /* CoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C0E4214520D300ED9469 /* CoreDetailViewController.swift */; };
+		D433C0E8214520D300ED9469 /* CoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C0E5214520D300ED9469 /* CoreDetailView.swift */; };
+		D433C0E9214520D300ED9469 /* CoreDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C0E6214520D300ED9469 /* CoreDetailViewModel.swift */; };
+		D433C0F021452C7100ED9469 /* CapsuleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C0ED21452C7100ED9469 /* CapsuleDetailViewController.swift */; };
+		D433C0F121452C7100ED9469 /* CapsuleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C0EE21452C7100ED9469 /* CapsuleDetailView.swift */; };
+		D433C0F221452C7100ED9469 /* CapsuleDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C0EF21452C7100ED9469 /* CapsuleDetailViewModel.swift */; };
+		D433C0F421452D2400ED9469 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C0F321452D2400ED9469 /* Capsule.swift */; };
+		D4683BB42146F048002EF565 /* MissionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4683BB32146F048002EF565 /* MissionReference.swift */; };
 		D48D051F212F297700028A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48D051E212F297700028A84 /* Assets.xcassets */; };
 		D48D0524212F3A4400028A84 /* LaunchSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D0521212F3A4400028A84 /* LaunchSiteViewController.swift */; };
 		D48D0525212F3A4400028A84 /* LaunchSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D0522212F3A4400028A84 /* LaunchSiteView.swift */; };
@@ -95,7 +103,7 @@
 		9B159942623C91538977E353 /* Pods_SpaceX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpaceX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B561B1877A490375CAA6AC30 /* Pods-SpaceX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpaceX/Pods-SpaceX.release.xcconfig"; sourceTree = "<group>"; };
 		BC8B7DE9356FD92552F1A697 /* Pods-SpaceXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpaceXTests/Pods-SpaceXTests.release.xcconfig"; sourceTree = "<group>"; };
-		D402AC562146DF0700D18131 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		D402AC582146ECDC00D18131 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		D415513C212B02C9008848DE /* SpaceX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415513F212B02C9008848DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4155149212B02CA008848DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -138,6 +146,14 @@
 		D41CA16B212C919600772581 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		D41CA16D212C948A00772581 /* DateFormatter+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Utility.swift"; sourceTree = "<group>"; };
 		D41CA16F212C9E9500772581 /* LaunchOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOverviewCell.swift; sourceTree = "<group>"; };
+		D433C0E4214520D300ED9469 /* CoreDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDetailViewController.swift; sourceTree = "<group>"; };
+		D433C0E5214520D300ED9469 /* CoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDetailView.swift; sourceTree = "<group>"; };
+		D433C0E6214520D300ED9469 /* CoreDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDetailViewModel.swift; sourceTree = "<group>"; };
+		D433C0ED21452C7100ED9469 /* CapsuleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleDetailViewController.swift; sourceTree = "<group>"; };
+		D433C0EE21452C7100ED9469 /* CapsuleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleDetailView.swift; sourceTree = "<group>"; };
+		D433C0EF21452C7100ED9469 /* CapsuleDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleDetailViewModel.swift; sourceTree = "<group>"; };
+		D433C0F321452D2400ED9469 /* Capsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capsule.swift; sourceTree = "<group>"; };
+		D4683BB32146F048002EF565 /* MissionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionReference.swift; sourceTree = "<group>"; };
 		D48D051E212F297700028A84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48D0521212F3A4400028A84 /* LaunchSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSiteViewController.swift; sourceTree = "<group>"; };
 		D48D0522212F3A4400028A84 /* LaunchSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSiteView.swift; sourceTree = "<group>"; };
@@ -272,6 +288,8 @@
 				D4F948892138176900873998 /* Roadster */,
 				D41CA164212C917200772581 /* Launches */,
 				D4155178212B0834008848DE /* Rockets */,
+				D433C0EA21452C4400ED9469 /* Cores */,
+				D433C0EB21452C5400ED9469 /* Capsules */,
 				D4E8A2A62144517D002292C5 /* Ships */,
 			);
 			path = Controllers;
@@ -319,7 +337,9 @@
 				D4155184212B0A4F008848DE /* Rocket.swift */,
 				D48D0527212F3B4000028A84 /* LaunchSite.swift */,
 				D4F948902138178B00873998 /* Roadster.swift */,
+				D433C0F321452D2400ED9469 /* Capsule.swift */,
 				D4E8A2A421444557002292C5 /* Ship.swift */,
+				D4683BB32146F048002EF565 /* MissionReference.swift */,
 				D4155186212B227C008848DE /* Measurements.swift */,
 				D415517D212B09B2008848DE /* Utility */,
 			);
@@ -398,6 +418,42 @@
 			path = Launches;
 			sourceTree = "<group>";
 		};
+		D433C0E3214520C500ED9469 /* CoreDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D433C0E4214520D300ED9469 /* CoreDetailViewController.swift */,
+				D433C0E6214520D300ED9469 /* CoreDetailViewModel.swift */,
+				D433C0E5214520D300ED9469 /* CoreDetailView.swift */,
+			);
+			path = CoreDetail;
+			sourceTree = "<group>";
+		};
+		D433C0EA21452C4400ED9469 /* Cores */ = {
+			isa = PBXGroup;
+			children = (
+				D433C0E3214520C500ED9469 /* CoreDetail */,
+			);
+			path = Cores;
+			sourceTree = "<group>";
+		};
+		D433C0EB21452C5400ED9469 /* Capsules */ = {
+			isa = PBXGroup;
+			children = (
+				D433C0EC21452C6300ED9469 /* CapsuleDetail */,
+			);
+			path = Capsules;
+			sourceTree = "<group>";
+		};
+		D433C0EC21452C6300ED9469 /* CapsuleDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D433C0ED21452C7100ED9469 /* CapsuleDetailViewController.swift */,
+				D433C0EF21452C7100ED9469 /* CapsuleDetailViewModel.swift */,
+				D433C0EE21452C7100ED9469 /* CapsuleDetailView.swift */,
+			);
+			path = CapsuleDetail;
+			sourceTree = "<group>";
+		};
 		D48D0520212F3A3300028A84 /* LaunchSite */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,7 +490,7 @@
 				D4E8A2A821445197002292C5 /* ShipDetailViewController.swift */,
 				D4E8A2AA21445197002292C5 /* ShipDetailViewModel.swift */,
 				D4E8A2A921445197002292C5 /* ShipDetailView.swift */,
-				D402AC562146DF0700D18131 /* ImageCell.swift */,
+				D402AC582146ECDC00D18131 /* ImageCell.swift */,
 			);
 			path = ShipDetail;
 			sourceTree = "<group>";
@@ -703,18 +759,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D402AC592146ECDC00D18131 /* ImageCell.swift in Sources */,
 				D41551A2212B428D008848DE /* Router.swift in Sources */,
+				D433C0F421452D2400ED9469 /* Capsule.swift in Sources */,
 				D415518D212B33F3008848DE /* PlaceholderView.swift in Sources */,
+				D433C0E8214520D300ED9469 /* CoreDetailView.swift in Sources */,
 				D4155195212B3820008848DE /* RocketCell.swift in Sources */,
+				D433C0F221452C7100ED9469 /* CapsuleDetailViewModel.swift in Sources */,
 				D4155199212B3EA0008848DE /* UIColor+Utility.swift in Sources */,
 				D496E28C212DA6E400F5CEAA /* LaunchDetailViewModel.swift in Sources */,
 				D4E8A2AD21445197002292C5 /* ShipDetailViewModel.swift in Sources */,
 				D41551A0212B3FDB008848DE /* RocketDetailViewModel.swift in Sources */,
 				D41551A4212B4341008848DE /* WindowManager.swift in Sources */,
+				D433C0F121452C7100ED9469 /* CapsuleDetailView.swift in Sources */,
+				D433C0E7214520D300ED9469 /* CoreDetailViewController.swift in Sources */,
 				D4155177212B082F008848DE /* RocketsViewModel.swift in Sources */,
 				D41CA16E212C948A00772581 /* DateFormatter+Utility.swift in Sources */,
 				D4E8A2AC21445197002292C5 /* ShipDetailView.swift in Sources */,
-				D402AC572146DF0700D18131 /* ImageCell.swift in Sources */,
 				D4E8A2A521444557002292C5 /* Ship.swift in Sources */,
 				D496E28A212DA6E400F5CEAA /* LaunchDetailViewController.swift in Sources */,
 				D415518A212B3385008848DE /* ListDataManager.swift in Sources */,
@@ -736,8 +797,10 @@
 				D4155187212B227C008848DE /* Measurements.swift in Sources */,
 				D4F948882137EE4900873998 /* Analytics.swift in Sources */,
 				D48D052A212F425800028A84 /* MapCell.swift in Sources */,
+				D4683BB42146F048002EF565 /* MissionReference.swift in Sources */,
 				D4F948912138178B00873998 /* Roadster.swift in Sources */,
 				D4155193212B373A008848DE /* LoadingCell.swift in Sources */,
+				D433C0E9214520D300ED9469 /* CoreDetailViewModel.swift in Sources */,
 				D4155191212B36C6008848DE /* UITableView+Reusable.swift in Sources */,
 				D4E8A2AB21445197002292C5 /* ShipDetailViewController.swift in Sources */,
 				D496E28B212DA6E400F5CEAA /* LaunchDetailView.swift in Sources */,
@@ -747,6 +810,7 @@
 				D41551A6212B446D008848DE /* Array+Utility.swift in Sources */,
 				D41CA169212C918000772581 /* LaunchesView.swift in Sources */,
 				D4F9488F2138177400873998 /* RoadsterViewModel.swift in Sources */,
+				D433C0F021452C7100ED9469 /* CapsuleDetailViewController.swift in Sources */,
 				D4155140212B02C9008848DE /* AppDelegate.swift in Sources */,
 				D4155181212B09FA008848DE /* Action+API.swift in Sources */,
 				D48D0528212F3B4000028A84 /* LaunchSite.swift in Sources */,
@@ -923,7 +987,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = SpaceX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -944,7 +1008,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = SpaceX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

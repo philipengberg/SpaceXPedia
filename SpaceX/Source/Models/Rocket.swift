@@ -183,6 +183,17 @@ extension Rocket {
         let landingType: LandingType?
         let landingVehicle: String?
         
+        // Core detail
+        let status: String?
+        let originalLaunch: Date?
+        let reuseCount: Int?
+        let details: String?
+        let missions: [MissionReference]?
+        let rtlsLandingAttempts: Int?
+        let rtlsLandings: Int?
+        let asdsLandingAttempts: Int?
+        let asdsLandings: Int?
+        
         init?(json: JSON) {
             guard let serial = json["core_serial"].string else { return nil }
             self.coreSerial = serial
@@ -192,6 +203,23 @@ extension Rocket {
             self.landingSuccess = json["land_success"].bool
             self.landingType = LandingType(rawValue: json["landing_type"].stringValue)
             self.landingVehicle = json["landing_vehicle"].string
+            
+            // Core detail
+            self.status = json["status"].string
+            self.originalLaunch = DateFormatter.ISO8601.date(from: json["original_launch"].stringValue)
+            self.reuseCount = json["reuse_count"].int
+            self.details = json["details"].string
+            
+            if json["missions"].exists() {
+                self.missions = json["missions"].arrayValue.compactMap { MissionReference(json: $0) }
+            } else {
+                self.missions = nil
+            }
+            
+            self.rtlsLandingAttempts = json["rtls_attempts"].int
+            self.rtlsLandings = json["rtls_landings"].int
+            self.asdsLandingAttempts = json["asds_attempts"].int
+            self.asdsLandings = json["asds_landings"].int
         }
         
         var blockAndSerialDisplayName: String {
@@ -209,7 +237,7 @@ extension Rocket {
         
         let payloadId: String
         let reused: Bool
-        let capSerial: String
+        let capSerial: String?
         let customers: [String]
         let nationality: String?
         let manufacturer: String?
@@ -222,7 +250,7 @@ extension Rocket {
             guard let id = json["payload_id"].string else { return nil }
             self.payloadId = id
             self.reused = json["reused"].boolValue
-            self.capSerial = json["cap_serial"].stringValue
+            self.capSerial = json["cap_serial"].string
             self.customers = json["customers"].arrayValue.compactMap { $0.string }
             self.nationality = json["nationality"].string
             self.manufacturer = json["manufacturer"].string

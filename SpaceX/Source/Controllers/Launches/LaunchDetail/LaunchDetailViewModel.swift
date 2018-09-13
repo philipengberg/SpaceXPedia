@@ -30,7 +30,7 @@ struct PropertyWithDetail {
     }
 }
 
-class LaunchDetailViewModel: ValuesViewModel<Launch> {
+class LaunchDetailViewModel: ValueViewModel<Launch> {
     
     let numberFormatter = NumberFormatter().setUp {
         $0.numberStyle = .decimal
@@ -45,9 +45,8 @@ class LaunchDetailViewModel: ValuesViewModel<Launch> {
         
         dataState.asObservable().take(1).flatMap { _ in SpaceXAPI.request(.ships).filterSuccessfulStatusCodes().mapJSON().mapToModels(Ship.self) }.bind(to: ships).disposed(by: bag)
         
-        Observable.combineLatest(object.asObservable(), ships.asObservable()).map { [weak self] (launches, ships) -> [InfoSection]? in
+        Observable.combineLatest(object.asObservable().unwrap(), ships.asObservable()).map { [weak self] (launch, ships) -> [InfoSection]? in
             guard let s = self else { return nil }
-            guard let launch = launches.first else { return nil }
             return s.generateAllSections(from: launch)
         }.unwrap().bind(to: sections).disposed(by: bag)
     }
@@ -101,15 +100,11 @@ class LaunchDetailViewModel: ValuesViewModel<Launch> {
         var props = [PropertyWithDetail]()
         
         if let coreSerial = core.coreSerial {
-            props.append(PropertyWithDetail(propertyName: "Serial", propertyValue: coreSerial))
+            props.append(PropertyWithDetail(propertyName: "Serial", propertyValue: coreSerial, detail: .coreDetail(coreSerial: coreSerial)))
         }
         
         if let block = core.block {
             props.append(PropertyWithDetail(propertyName: "Block", propertyValue: "\(block)"))
-        }
-        
-        if let landingType = core.landingType {
-            props.append(PropertyWithDetail(propertyName: "Landing type", propertyValue: landingType.rawValue))
         }
         
         if let flightNumber = core.flightNumber {
@@ -142,7 +137,12 @@ class LaunchDetailViewModel: ValuesViewModel<Launch> {
     private func generatePayloadSection(from payload: Rocket.Payload) -> InfoSection {
         var props = [PropertyWithDetail]()
         
+        if let capsule = payload.capSerial {
+            props.append(PropertyWithDetail(propertyName: "Capsule", propertyValue: capsule, detail: .capsuleDetail(capsuleId: capsule)))
+        }
+        
         props.append(PropertyWithDetail(propertyName: "Type", propertyValue: payload.payloadType))
+        
         props.append(PropertyWithDetail(propertyName: "Customers", propertyValue: payload.customers.joined(separator: ", ")))
         
         if let nationality = payload.nationality {
