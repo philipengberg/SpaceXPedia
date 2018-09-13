@@ -49,8 +49,14 @@ class LaunchDetailViewController: UIViewController {
         _view.tableView.registerCell(LaunchVideoCell.self)
         
         viewModel.dataState.asObservable().subscribe(onNext: { [weak self] (dataState) in
-            self?.listManager.state = .dictData(json: JSONDict())
+            self?.listManager.state = dataState
         }).disposed(by: bag)
+        
+        viewModel.sections.asObservable().subscribe(onNext: { [weak self] (_) in
+            self?._view.tableView.reloadData()
+        }).disposed(by: bag)
+        
+        viewModel.reloadData()
         
     }
     
@@ -103,7 +109,6 @@ extension LaunchDetailViewController: UITableViewDataSource {
             cell.detailTextLabel?.text = property.propertyValue
             cell.accessoryType = property.detail == nil ? .none : .disclosureIndicator
             cell.selectionStyle = property.detail == nil ? .none : .default
-            cell.imageView?.image = property.image
             
             if property.longValueText {
                 cell.detailTextLabel?.numberOfLines = 0

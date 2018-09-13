@@ -21,6 +21,7 @@ struct Launch: Serialization {
     let staticFireDate: Date?
     let site: Site?
     let links: Links?
+    let shipIds: [String]
     
     init?(json: JSON) {
         guard let flightNumber = json["flight_number"].int else { return nil }
@@ -36,6 +37,7 @@ struct Launch: Serialization {
         self.staticFireDate = DateFormatter.ISO8601.date(from: json["static_fire_date_utc"].stringValue)
         self.site = Site(json: json["launch_site"])
         self.links = Links(json: json["links"])
+        self.shipIds = json["ships"].arrayValue.compactMap { $0.string }
     }
     
 }

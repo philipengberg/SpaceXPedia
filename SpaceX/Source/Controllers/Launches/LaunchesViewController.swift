@@ -151,7 +151,7 @@ extension LaunchesViewController: UITableViewDataSource {
 extension LaunchesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Router.route(to: .launchDetail(launchId: "", launch: viewModel.filteredLaunches.value[indexPath.row]))
+        Router.route(to: .launchDetail(flightNumber: viewModel.filteredLaunches.value[indexPath.row].flightNumber))
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
